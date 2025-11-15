@@ -1,0 +1,42 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    height: 100%;
+    background: #ffffff;
+    font-family: "Inter", sans-serif;
+}
+
+body {
+    color: #1a1a1a;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #b4b8c5;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #989cad;
+}
+
+:root {
+    --bg-blue: #EAEFFF;
+    --border-blue: #B9C7F8;
+    --text-blue: #050987;
+    --text-color: #000000;
+    --text-white: #ffffff;
+    --gray:#919191;
+}
