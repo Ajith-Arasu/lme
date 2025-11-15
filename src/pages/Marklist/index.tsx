@@ -50,28 +50,37 @@ const Marklist = () => {
 
       </div>
 
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            <th>S.No</th>
-            <th>Subject</th>
-            <th>Date</th>
-            <th>Marks</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {rows.map((item) => (
-            <tr key={item.sn}>
-              <td>{item.sn}</td>
-              <td>{item.subject}</td>
-              <td>{item.date}</td>
-              <td>{item.marks}</td>
+      <div className={styles.card}>
+        <div className={styles.title}>
+          <h4>Exam Event Name :</h4>
+        </div>
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th>S.No</th>
+              <th>Subject[Code]</th>
+              <th>Date</th>
+              <th>Question Paper</th>
+              <th>Answer Keys</th>
+              <th>View</th>
+              <th>Marks</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            {rows.map((item) => (
+              <tr key={item.sn}>
+                <td>{item.sn}</td>
+                <td>{item.subject}</td>
+                <td>{item.date}</td>
+                <td>{item.marks}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
+
   );
 };
 

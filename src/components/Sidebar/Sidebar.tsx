@@ -41,22 +41,22 @@ const Sidebar: React.FC = () => {
       <nav className={styles.menu}>
         <NavLink to="/marklist-report" className={styles.menuItem}>
           <DashboardIcon className={styles.icon} />
-          {open && <span>Marklist Report</span>}
+          {open && <span className={styles.menuItemText}>Marklist Report</span>}
         </NavLink>
 
         <NavLink to="/comments" className={styles.menuItem}>
           <ChatIcon className={styles.icon} />
-          {open && <span>Comments</span>}
+          {open && <span className={styles.menuItemText}>Comments</span>}
         </NavLink>
 
         <NavLink to="/settings" className={styles.menuItem}>
           <SettingsIcon className={styles.icon} />
-          {open && <span>Settings</span>}
+          {open && <span className={styles.menuItemText}>Settings</span>}
         </NavLink>
 
         <NavLink to="/help" className={styles.menuItem}>
           <HelpOutlineIcon className={styles.icon} />
-          {open && <span>Help</span>}
+          {open && <span className={styles.menuItemText}>Help</span>}
         </NavLink>
       </nav>
 
@@ -64,7 +64,7 @@ const Sidebar: React.FC = () => {
       <div className={styles.logoutSection}>
         <NavLink to="/logout" className={styles.menuItem}>
           <LogoutIcon className={styles.icon} />
-          {open && <span>Logout</span>}
+          {open && <span className={styles.menuItemText}>Logout</span>}
         </NavLink>
       </div>
     </div>

@@ -1,6 +1,7 @@
 /* ===== Sidebar Container ===== */
 .sidebar {
-  position: relative;          /* Needed for arrow */
+  position: relative;
+  /* Needed for arrow */
   height: 100vh;
   background: var(--bg-blue);
   color: white;
@@ -8,11 +9,13 @@
   flex-direction: column;
   transition: width 0.3s ease;
   padding: .75rem;
-  overflow: visible;           /* Allow arrow outside */
+  overflow: visible;
+  border-radius: 0 20px 20px 0;
+  /* Allow arrow outside */
 }
 
 .open {
-  width: 12.5rem;
+  width: 11rem;
 }
 
 .closed {
@@ -24,8 +27,16 @@
   display: flex;
   align-items: center;
   justify-content: start;
-  margin-bottom: 1.5rem;
 }
+
+.open .topSection {
+  padding: 0 0.75rem 0.75rem 0;
+}
+
+.closed .topSection {
+  padding: 0;
+}
+
 
 .bigLogo {
   width: 100%;
@@ -41,8 +52,9 @@
 .toggleWrapper {
   position: absolute;
   top: 1.25rem;
-  right: 0;
-  transform: translateX(50%); /* push arrow half outside */
+  right: 5px;
+  transform: translateX(50%);
+  /* push arrow half outside */
 }
 
 .toggleBtn {
@@ -93,6 +105,10 @@ z.menu {
 .menuItem:hover {
   background: var(--text-blue);
   color: var(--text-white);
+}
+
+.menuItemText {
+  font-size: 14px;
 }
 
 .logoutSection {
