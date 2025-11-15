@@ -1,13 +1,31 @@
 .container {
   width: 100%;
+
 }
 
 .card {
   background: white;
-  padding: 20px;
   margin-bottom: 20px;
-  border-radius: 12px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  width: 100%;
+  text-align: center;
+  background: var(--bg-blue);
+  padding: 20px;
+  border-radius: 20px 20px 0 0;
+}
+
+.cardContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
 }
 
 .profile {
@@ -39,4 +57,31 @@
 .table td {
   padding: 12px;
   border-top: 1px solid #ddd;
+}
+
+.cardContent {
+  display: flex;
+  gap: 20px;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  align-items: center;
+  background-color: #fff;
+}
+
+.profile img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.infoBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-weight: 600;
 }

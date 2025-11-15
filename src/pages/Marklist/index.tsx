@@ -25,20 +25,29 @@ const Marklist = () => {
 
   return (
     <div className={styles.container}>
-      <h1>Mark List - Report</h1>
-
       <div className={styles.card}>
-        <h3>Academic Transcript</h3>
+        <div className={styles.title}>
+          <h4>Academic Transcript</h4>
+        </div>
 
-        <div className={styles.profile}>
-          <img src="https://i.pravatar.cc/150" alt="student" />
+        <div className={styles.cardContent}>
+          <div className={styles.profile}>
+            <img src="https://avatar.iran.liara.run/public" alt="student" />
+          </div>
 
-          <div>
-            <p><b>Student Name :</b> Seetha Lakshmi</p>
-            <p><b>DOB :</b> 17-12-1995</p>
-            <p><b>Roll No :</b> UME450987</p>
+          <div className={styles.infoBlock}>
+            <p>Student Name : <span className={styles.label}>Seetha Lakshmi</span></p>
+            <p>DOB :<span className={styles.label}> 17-12-1995</span></p>
+            <p>Roll No :<span className={styles.label}> UME450987</span></p>
+          </div>
+
+          <div className={styles.infoBlock}>
+            <p>Course :<span className={styles.label}> Aeronautical</span></p>
+            <p>Batch :<span className={styles.label}> Aeronautical</span></p>
+            <p>Year / Semester :<span className={styles.label}> Semester 7</span></p>
           </div>
         </div>
+
       </div>
 
       <table className={styles.table}>
