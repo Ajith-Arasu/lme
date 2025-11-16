@@ -14,12 +14,14 @@ interface CommentModalProps {
     open: boolean;
     onClose: () => void;
     questionNumber: number | null;
+    onSave: any
 }
 
 const CommentModal: React.FC<CommentModalProps> = ({
     open,
     onClose,
-    questionNumber
+    questionNumber,
+    onSave
 }) => {
     const [comment, setComment] = useState("");
 
@@ -64,6 +66,7 @@ const CommentModal: React.FC<CommentModalProps> = ({
                     <Button
                         variant="outlined"
                         className={styles.saveButton}
+                        onClick={onSave}
                     >
                         Save
                     </Button>

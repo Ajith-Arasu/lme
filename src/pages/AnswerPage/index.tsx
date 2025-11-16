@@ -1,9 +1,12 @@
 import { useState } from "react";
 import AnswerCard from "../../components/AnswerCard";
 import CommentModal from "../../components/CommentModel";
+import { Snackbar } from "@mui/material";
 
 const AnswerPage = () => {
     const [open, setOpen] = useState(false);
+    const [openSnackBar, setOpenSnackBar] = useState(false);
+
     const [selectedQuestion, setSelectedQuestion] = useState<number | null>(null);
 
     const dummyQuestions = [
@@ -39,6 +42,15 @@ Larger mass flow rate`,
         setSelectedQuestion(null);
     };
 
+    const commentSave = () => {
+        setOpenSnackBar(true);
+        setOpen(false)
+        setTimeout(() => {
+            setOpenSnackBar(false);
+        }, 1000);
+    };
+
+
     return (
         <div style={{ padding: "20px" }}>
             {dummyQuestions.map((item, index) => (
@@ -57,8 +69,23 @@ Larger mass flow rate`,
             <CommentModal
                 open={open}
                 onClose={handleClose}
+                onSave={commentSave}
                 questionNumber={selectedQuestion}
             />
+
+            <Snackbar
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                open={openSnackBar}
+                message="Comment Added Successfully!"
+                ContentProps={{
+                    sx: {
+                        backgroundColor: "var(--text-blue)",
+                        color: 'white',
+                        fontWeight: 'bold'
+                    }
+                }}
+            />
+
         </div>
     );
 };
