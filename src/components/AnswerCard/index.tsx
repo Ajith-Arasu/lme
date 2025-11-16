@@ -7,6 +7,7 @@ interface AnswerCardProps {
     questionTitle: string;
     pageNumber: number;
     answer: string;
+    onCommentClick: (questionNumber: number) => void;
 }
 
 const AnswerCard: React.FC<AnswerCardProps> = ({
@@ -15,6 +16,7 @@ const AnswerCard: React.FC<AnswerCardProps> = ({
     questionTitle,
     pageNumber,
     answer,
+    onCommentClick
 }) => {
 
     return (
@@ -23,7 +25,11 @@ const AnswerCard: React.FC<AnswerCardProps> = ({
             <div className={styles.header}>
                 <div className={styles.questionNumber}>
                     <span className={styles.qNumber}>Question Number : {questionNumber}</span>
-                    <span className={styles.addComment}>
+
+                    <span
+                        className={styles.addComment}
+                        onClick={() => onCommentClick(questionNumber)}
+                    >
                         <InsertCommentIcon className={styles.icon} />
                         Add Comment
                     </span>
@@ -33,9 +39,7 @@ const AnswerCard: React.FC<AnswerCardProps> = ({
             </div>
 
             {/* Question Title */}
-            <div className={styles.title}>
-                {questionTitle}
-            </div>
+            <div className={styles.title}>{questionTitle}</div>
 
             {/* Page No */}
             <div className={styles.page}>Page : {pageNumber}</div>

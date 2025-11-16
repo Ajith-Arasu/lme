@@ -1,6 +1,11 @@
+import { useState } from "react";
 import AnswerCard from "../../components/AnswerCard";
+import CommentModal from "../../components/CommentModel";
 
 const AnswerPage = () => {
+    const [open, setOpen] = useState(false);
+    const [selectedQuestion, setSelectedQuestion] = useState<number | null>(null);
+
     const dummyQuestions = [
         {
             questionNumber: 1,
@@ -24,6 +29,16 @@ Larger mass flow rate`,
         },
     ];
 
+    const handleOpen = (questionNumber: number) => {
+        setSelectedQuestion(questionNumber);
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+        setSelectedQuestion(null);
+    };
+
     return (
         <div style={{ padding: "20px" }}>
             {dummyQuestions.map((item, index) => (
@@ -34,8 +49,16 @@ Larger mass flow rate`,
                     questionTitle={item.questionTitle}
                     pageNumber={item.pageNumber}
                     answer={item.answer}
+                    onCommentClick={handleOpen}
                 />
             ))}
+
+            {/* Modal */}
+            <CommentModal
+                open={open}
+                onClose={handleClose}
+                questionNumber={selectedQuestion}
+            />
         </div>
     );
 };
