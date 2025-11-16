@@ -62,7 +62,7 @@ const Sidebar: React.FC = () => {
 
       {/* Logout at Bottom */}
       <div className={styles.logoutSection}>
-        <NavLink to="/logout" className={styles.menuItem}>
+        <NavLink to="/" className={styles.menuItem}>
           <LogoutIcon className={styles.icon} />
           {open && <span className={styles.menuItemText}>Logout</span>}
         </NavLink>

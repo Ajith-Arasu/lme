@@ -15,6 +15,10 @@ const App = () => {
         <Route element={<MainLayout />}>
           <Route path="/marklist-report" element={<Marklist />} />
           <Route path="/answer-page" element={<AnswerPage />} />
+          <Route path="/comments" element={<AnswerPage />} />
+          <Route path="/settings" element={<AnswerPage />} />
+          <Route path="/help" element={<AnswerPage />} />
+          <Route path="/myprofile" element={<AnswerPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
