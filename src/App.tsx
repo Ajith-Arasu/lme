@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
-import Marklist from "./pages/Marklist";
+import Marklist from "./pages/Marklist-Report";
 import MainLayout from "./layout/MainLayout";
+import AnswerPage from "./pages/AnswerPage";
 
 const App = () => {
   return (
@@ -12,7 +13,8 @@ const App = () => {
 
         {/* Protected Layout */}
         <Route element={<MainLayout />}>
-          <Route path="/marklist" element={<Marklist />} />
+          <Route path="/marklist-report" element={<Marklist />} />
+          <Route path="/answer-page" element={<AnswerPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

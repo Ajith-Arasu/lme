@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+import StudentDetailCard from "../../components/StudentDetailCard";
 import styles from "./Marklist.module.css";
 import ArticleIcon from '@mui/icons-material/Article';
 
@@ -12,6 +14,7 @@ interface MarkItem {
 }
 
 const Marklist = () => {
+  const navigate = useNavigate();
   const rows: MarkItem[] = [
     {
       sn: "01",
@@ -154,31 +157,9 @@ const Marklist = () => {
   return (
     <div className={styles.container}>
 
+      <StudentDetailCard />
+
       <div className={styles.marklistcard}>
-        <div className={styles.title}>
-          <h4>Academic Transcript</h4>
-        </div>
-
-        <div className={styles.cardContent}>
-          <div className={styles.profile}>
-            <img src="https://avatar.iran.liara.run/public" alt="student" />
-          </div>
-
-          <div className={styles.infoBlock}>
-            <p>Student Name : <span className={styles.label}>Seetha Lakshmi</span></p>
-            <p>DOB : <span className={styles.label}>17-12-1995</span></p>
-            <p>Roll No : <span className={styles.label}>UME450987</span></p>
-          </div>
-
-          <div className={styles.infoBlock}>
-            <p>Course : <span className={styles.label}>Aeronautical Engineering</span></p>
-            <p>Batch : <span className={styles.label}>2019 - 2023</span></p>
-            <p>Year / Semester : <span className={styles.label}>Semester 7</span></p>
-          </div>
-        </div>
-      </div>
-
-      <div className={styles.card}>
         <div className={styles.title}>
           <h4>Exam Event Name : End Semester Exam – Dec 2024</h4>
         </div>
@@ -204,7 +185,7 @@ const Marklist = () => {
                 <td>{item.date}</td>
                 <td>{item.questionPaper}</td>
                 <td>{item.answerKeys}</td>
-                <td><div className={styles.tableSheetView}><ArticleIcon sx={{ fontSize: "14px" }} />{item.view}</div></td>
+                <td><div className={styles.tableSheetView} onClick={() => { navigate("/answer-page") }}><ArticleIcon sx={{ fontSize: "14px" }} />{item.view}</div></td>
                 <td>{item.marks}</td>
               </tr>
             ))}
@@ -212,7 +193,7 @@ const Marklist = () => {
         </table>
       </div>
 
-    </div>
+    </div >
   );
 };
 

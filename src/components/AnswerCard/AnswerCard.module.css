@@ -1,0 +1,76 @@
+.card {
+  background: white;
+  border-radius: 14px;
+  border: 1px solid #e3e6ff;
+  margin-bottom: 20px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+/* HEADER */
+.header {
+  background: #e8edff;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  color: black
+}
+
+.qNumber {
+  font-size: 14px;
+}
+
+.score {
+  font-size: 14px;
+}
+
+.addComment {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  color: var(--text-blue);
+}
+
+.icon {
+  font-size: 14px !important;
+}
+
+/* TITLE */
+.questionNumber {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.title {
+  padding: 14px 16px 4px 16px;
+  font-size: 15px;
+  color: var(--text-blue);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* PAGE LABEL */
+.page {
+  padding: 0px 16px 10px 16px;
+  font-size: 12px;
+  color: #444;
+}
+
+/* ANSWER BOX */
+.answerBox {
+  padding: 18px 20px;
+  border-top: 1px solid #ddd;
+}
+
+.answerText {
+  white-space: pre-line;
+  font-family: "Caveat", cursive;
+  font-size: 28px;
+  line-height: 1.4;
+  color: var(--text-blue);
+}
