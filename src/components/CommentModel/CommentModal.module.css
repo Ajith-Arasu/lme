@@ -1,0 +1,52 @@
+/* CommentModal.module.css */
+
+.dialogPaper {
+    width: 50% !important;
+    max-width: 50% !important;
+}
+
+
+.dialogTitle {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+}
+
+.dialogCloseButton {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.questionNumber {
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.textField {
+    margin-top: 16px;
+}
+
+.textFieldRoot {
+    border-radius: 12px;
+    padding: 8px;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+.saveButton,
+.cancelButton {
+   background-color: var(--bg-blue) !important;
+   color: var(--text-black) !important;
+}
+
+.saveButton:hover,
+.cancelButton:hover {
+   background-color: var(--text-blue) !important;
+   color: var(--text-white) !important;
+}
+

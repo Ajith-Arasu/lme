@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
     Dialog,
     DialogContent,
@@ -7,7 +8,7 @@ import {
     Button
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { useState } from "react";
+import styles from "./CommentModal.module.css";
 
 interface CommentModalProps {
     open: boolean;
@@ -20,22 +21,19 @@ const CommentModal: React.FC<CommentModalProps> = ({
     onClose,
     questionNumber
 }) => {
-
     const [comment, setComment] = useState("");
 
     return (
-        <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth>
-            <DialogTitle
-                sx={{ display: "flex", justifyContent: "space-between", fontWeight: 700 }}
-            >
+        <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth classes={{ paper: styles.dialogPaper }}>
+            <DialogTitle className={styles.dialogTitle}>
                 Question Comments
-                <IconButton onClick={onClose}>
+                <IconButton onClick={onClose} className={styles.dialogCloseButton}>
                     <CloseIcon />
                 </IconButton>
             </DialogTitle>
 
             <DialogContent>
-                <div style={{ marginBottom: "12px", fontWeight: 600 }}>
+                <div className={styles.questionNumber}>
                     Question Number : {questionNumber}
                 </div>
 
@@ -46,27 +44,27 @@ const CommentModal: React.FC<CommentModalProps> = ({
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
                     placeholder="Enter your comment..."
-                    sx={{
-                        "& .MuiOutlinedInput-root": {
-                            borderRadius: "12px",
-                            padding: "8px",
-                        },
+                    className={styles.textField}
+                    InputProps={{
+                        classes: {
+                            root: styles.textFieldRoot
+                        }
                     }}
                 />
 
-                <div
-                    style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        marginTop: "20px",
-                        gap: "20px",
-                    }}
-                >
-                    <Button variant="outlined" onClick={onClose}>
+                <div className={styles.buttonContainer}>
+                    <Button
+                        variant="outlined"
+                        onClick={onClose}
+                        className={styles.cancelButton}
+                    >
                         Cancel
                     </Button>
 
-                    <Button variant="contained" color="primary">
+                    <Button
+                        variant="outlined"
+                        className={styles.saveButton}
+                    >
                         Save
                     </Button>
                 </div>

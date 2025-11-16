@@ -94,7 +94,7 @@ z.menu {
   display: flex;
   align-items: center;
   gap: .75rem;
-  color: var(--text-color);
+  color: var(--text-black);
   text-decoration: none;
   padding: .625rem;
   border-radius: .375rem;
