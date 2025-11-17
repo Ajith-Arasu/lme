@@ -3,6 +3,7 @@ import Login from "./pages/Login";
 import Marklist from "./pages/Marklist-Report";
 import MainLayout from "./layout/MainLayout";
 import AnswerPage from "./pages/AnswerPage";
+import WorkingOnIt from "./components/WorkingOnIt";
 
 const App = () => {
   return (
@@ -15,10 +16,10 @@ const App = () => {
         <Route element={<MainLayout />}>
           <Route path="/marklist-report" element={<Marklist />} />
           <Route path="/answer-page" element={<AnswerPage />} />
-          <Route path="/comments" element={<AnswerPage />} />
-          <Route path="/settings" element={<AnswerPage />} />
-          <Route path="/help" element={<AnswerPage />} />
-          <Route path="/myprofile" element={<AnswerPage />} />
+          <Route path="/comments" element={ <WorkingOnIt />} />
+          <Route path="/settings" element={ <WorkingOnIt />} />
+          <Route path="/help" element={ <WorkingOnIt />} />
+          <Route path="/profile" element={ <WorkingOnIt />} />
         </Route>
       </Routes>
     </BrowserRouter>

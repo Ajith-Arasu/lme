@@ -52,7 +52,7 @@ Larger mass flow rate`,
 
 
     return (
-        <div style={{ padding: "20px" }}>
+        <div >
             {dummyQuestions.map((item, index) => (
                 <AnswerCard
                     key={index}

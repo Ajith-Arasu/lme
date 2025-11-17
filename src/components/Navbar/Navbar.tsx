@@ -2,8 +2,25 @@ import { useEffect, useState } from "react";
 import styles from "./Navbar.module.css";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import { useNavigate, useLocation } from "react-router-dom";
+
 const Navbar = () => {
     const [dateTime, setDateTime] = useState<string>("");
+    const navigate = useNavigate();
+    const location = useLocation(); 
+
+    // Route → Title mapping
+    const pageTitles: Record<string, string> = {
+        "/marklist-report": "Mark List - Report",
+        "/answer-page": "Answer Page",
+        "/comments": "Comments",
+        "/settings": "Settings",
+        "/help": "Help",
+        "/profile": "My Profile",
+    };
+
+    // Compute title based on current URL
+    const pageTitle = pageTitles[location.pathname] || "Dashboard";
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -14,16 +31,21 @@ const Navbar = () => {
         return () => clearInterval(interval);
     }, []);
 
+    // Also update browser tab title
+    useEffect(() => {
+        document.title = pageTitle;
+    }, [pageTitle]);
+
     return (
         <header className={styles.navbar}>
-            {/* LEFT SIDE TITLE */}
-            <div className={styles.left}>Mark List - Report</div>
+            {/* LEFT SIDE TITLE DYNAMIC */}
+            <div className={styles.left}>{pageTitle}</div>
 
             {/* RIGHT SIDE */}
             <div className={styles.right}>
                 <div className={styles.datetime}>
                     <span><CalendarMonthIcon /></span>
-                    <span >{dateTime}</span>
+                    <span>{dateTime}</span>
                 </div>
 
                 {/* PROFILE HOVER WRAPPER */}
@@ -41,11 +63,12 @@ const Navbar = () => {
                     <div>
                         <ExpandMoreIcon className={styles.icon} />
                     </div>
+
                     {/* HOVER DROPDOWN */}
                     <div className={styles.dropdown}>
-                        <button>My Profile</button>
-                        <button>Account Settings</button>
-                        <button>Logout</button>
+                        <button onClick={() => navigate('/profile')}>My Profile</button>
+                        <button onClick={() => navigate('/settings')}>Account Settings</button>
+                        <button onClick={() => navigate('/')}>Logout</button>
                     </div>
                 </div>
             </div>
