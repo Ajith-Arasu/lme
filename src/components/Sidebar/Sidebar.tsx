@@ -6,17 +6,23 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import LogoutIcon from "@mui/icons-material/Logout";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
+import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
+
 import bigLogo from "../../assets/img/big-logo.png";
 import smallLogo from "../../assets/img/small-logo.png";
 
 import styles from "./Sidebar.module.css";
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  onLogoutClick: () => void;  
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ onLogoutClick }) => { 
   const [open, setOpen] = useState(true);
 
   return (
     <div className={`${styles.sidebar} ${open ? styles.open : styles.closed}`}>
+
       {/* Logo Section */}
       <div className={styles.topSection}>
         <img
@@ -26,11 +32,11 @@ const Sidebar: React.FC = () => {
         />
       </div>
 
-      {/* Arrow (half outside sidebar) */}
+      {/* Arrow */}
       <div className={styles.toggleWrapper}>
         <button className={styles.toggleBtn} onClick={() => setOpen(!open)}>
           <KeyboardArrowRightIcon
-          sx={{ fontSize: 16, width: 20, height: 20 }}
+            sx={{ fontSize: 16, width: 20, height: 20 }}
             className={open ? styles.arrowOpen : styles.arrowClosed}
           />
         </button>
@@ -61,11 +67,12 @@ const Sidebar: React.FC = () => {
 
       {/* Logout at Bottom */}
       <div className={styles.logoutSection}>
-        <NavLink to="/" className={styles.menuItem}>
+        <button className={styles.logoutButton} onClick={onLogoutClick}>
           <LogoutIcon className={styles.icon} />
-          {open && <span className={styles.menuItemText}>Logout</span>}
-        </NavLink>
+          {open && <span className={styles.logoutButtonText}>Logout</span>}
+        </button>
       </div>
+
     </div>
   );
 };

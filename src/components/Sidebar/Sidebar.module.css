@@ -115,3 +115,13 @@ z.menu {
   margin-top: auto;
   margin-bottom: .625rem;
 }
+
+.logoutButton {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-blue);
+  cursor: pointer;
+}
