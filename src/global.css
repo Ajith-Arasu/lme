@@ -39,5 +39,7 @@ body {
     --text-blue: #050987;
     --text-black: #000000;
     --text-white: #ffffff;
-    --gray:#919191;
+    --text-red: #E50000;
+    --text-green: #249A20;
+    --gray: #919191;
 }

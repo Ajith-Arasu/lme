@@ -102,3 +102,39 @@
   line-height: 1.4;
   color: var(--text-blue);
 }
+
+.reeveluationStatus {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon {
+  width: 10%;
+}
+
+.applied {
+  color: var(--text-blue);
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.rejected {
+  color: var(--text-red);
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.approved {
+  color: var(--text-green);
+  font-weight: 600;
+  font-size: 12px;
+}
+.infoIcon{
+  color: var(--text-green);
+}
+.scoreValue{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}

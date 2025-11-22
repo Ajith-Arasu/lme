@@ -20,7 +20,7 @@ const AnswerPage = () => {
             pageNumber: 1,
             answer: `Jet engines require oxygen for combustion.
 They cannot operate in the absence of an atmosphere.`,
-            status: "reevaluation applied"
+            status: ""
         },
         {
             questionNumber: 2,
@@ -33,7 +33,7 @@ Propeller is driven by turbine
 
 Fan is driven by turbine
 Larger mass flow rate`,
-            status: "approved"
+            status: "applied"
         },
         {
             questionNumber: 3,
@@ -131,7 +131,7 @@ Reaction Turbine
             <Snackbar
                 anchorOrigin={{ vertical: "top", horizontal: "center" }}
                 open={openSnackBar}
-                message="Feedback Added successfully!"
+                message="Re-evaluation submitted successfully!"
                 ContentProps={{
                     sx: {
                         backgroundColor: "var(--text-blue)",

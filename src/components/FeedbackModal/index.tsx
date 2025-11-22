@@ -75,7 +75,7 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({
                         className={styles.applyButton}
                         onClick={onSave}
                     >
-                        Add Feedback
+                        Request Feedback
                     </Button>
                 </div>
             </DialogContent>
