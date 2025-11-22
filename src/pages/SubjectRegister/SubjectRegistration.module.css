@@ -1,27 +1,18 @@
 /* Main layout */
 .mainWrapper {
-  padding: 2rem;
-  background: #f3f4f6;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: sans-serif;
+  width: 100%;
 }
 
 .cardContainer {
   width: 100%;
-  max-width: 900px;
-  background: white;
   border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   border: 1px solid #e5e7eb;
   overflow: hidden;
 }
 
 /* Header */
 .header {
-  background: #eff6ff;
+  background: var(--bg-blue);
   padding: 16px;
   text-align: center;
   font-size: 1.25rem;
@@ -41,24 +32,40 @@
   padding: 12px;
   font-size: 0.9rem;
   font-weight: bold;
-  color: #4338ca;
+  color: var(--text-blue);
   text-transform: uppercase;
-  background: rgba(239, 246, 255, 0.6);
   border-right: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+
 }
 
-.sno { width: 10%; text-align: center; }
-.subject { width: 35%; text-align: left; }
-.code { width: 20%; text-align: center; }
-.date { width: 35%; text-align: center; }
+.sno {
+  width: 10%;
+  text-align: center;
+}
 
-.row {
+.subject {
+  width: 35%;
+  text-align: left;
+}
+
+.code {
+  width: 20%;
+  text-align: center;
+}
+
+.date {
+  width: 35%;
+  text-align: center;
+}
+
+/* .row {
   transition: background 0.2s ease;
 }
 
 .row:hover {
   background: rgba(238, 242, 255, 0.4);
-}
+} */
 
 /* Cell styles */
 .tdCenter,
