@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {useState} from 'react'
+import LMELOGO from '../../assets/img/lme-logo.jpg'
 interface LoginFormValues {
   username: string;
   password: string;
@@ -38,7 +39,7 @@ const Login = () => {
   return (
     <div className={styles.container}>
       <form className={styles.card} onSubmit={handleSubmit(onSubmit)}>
-        <h2 className={styles.title}>LME Login</h2>
+        <img src={LMELOGO} alt="lmn-logo" className={styles.logo}/>
 
         {/* Username Field */}
         <input
