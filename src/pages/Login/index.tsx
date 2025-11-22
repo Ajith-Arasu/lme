@@ -7,7 +7,7 @@ const Login = () => {
 
   const handleLogin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    navigate("/student-dashboard");
+    navigate("/exam-events");
   };
 
   return (

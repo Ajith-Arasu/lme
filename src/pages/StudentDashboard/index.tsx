@@ -14,17 +14,17 @@ const StudentDashboard = () => {
         {
             sn: "01",
             shedule: "Click here to view Subject Registration Details",
-            link: "/marklist-report"
+            link: "/exam-event"
         },
         {
             sn: "02",
             shedule: "Click here to View Score card For Semester 7",
-            link: "/marklist-report"
+            link: "/exam-event"
         },
         {
             sn: "03",
             shedule: "Click here to View Score card For Semester 6",
-            link: "/marklist-report"
+            link: "/exam-event"
         },
 
     ];

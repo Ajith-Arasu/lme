@@ -7,12 +7,13 @@ import { useNavigate, useLocation } from "react-router-dom";
 const Navbar = () => {
     const [dateTime, setDateTime] = useState<string>("");
     const navigate = useNavigate();
-    const location = useLocation(); 
+    const location = useLocation();
 
     // Route → Title mapping
     const pageTitles: Record<string, string> = {
-        "/marklist-report": "Exam Event",
-        "/answer-page": "Answer Page",
+        "/exam-events": "Exam Events",
+        "/exam-event": "Exam Event",
+        "/answer-page": "Exam / title",
         "/comments": "Comments",
         "/settings": "Settings",
         "/help": "Help",

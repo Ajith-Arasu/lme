@@ -38,7 +38,7 @@ const Sidebar: React.FC = () => {
 
       {/* Menu Items */}
       <nav className={styles.menu}>
-        <NavLink to="/student-dashboard" className={styles.menuItem}>
+        <NavLink to="/exam-events" className={styles.menuItem}>
           <DashboardIcon className={styles.icon} />
           {open && <span className={styles.menuItemText}>Exam Events</span>}
         </NavLink>
