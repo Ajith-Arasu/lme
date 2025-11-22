@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar/Sidebar";
 import Navbar from "../components/Navbar/Navbar";
 import { useState } from "react";
@@ -8,13 +8,13 @@ import LogoutModal from "../components/LogoutModal";
 
 const MainLayout = () => {
   const [logoutOpen, setLogoutOpen] = useState(false);
+  const navigate = useNavigate(); 
 
   const openLogout = () => setLogoutOpen(true);
   const closeLogout = () => setLogoutOpen(false);
 
   const confirmLogout = () => {
-    console.log("User logged out");
-    window.location.href = "/";
+    navigate("/", { replace: true });
   };
 
   return (
