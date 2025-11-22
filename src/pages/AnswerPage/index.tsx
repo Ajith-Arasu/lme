@@ -2,8 +2,8 @@ import { useState } from "react";
 import AnswerCard from "../../components/AnswerCard";
 import ReevaluateModal from "../../components/ReevaluateModal";
 import { Snackbar } from "@mui/material";
-import StudentDetailCard from "../../components/StudentDetailCard";
 import FeedbackModal from "../../components/FeedbackModal";
+import ExamDetailCard from "../../components/ExamDetailCard";
 
 const AnswerPage = () => {
     const [openReevaluateModal, setOpenReevaluateModal] = useState(false);
@@ -101,7 +101,7 @@ Reaction Turbine
 
     return (
         <div>
-            <StudentDetailCard />
+            <ExamDetailCard />
 
             {dummyQuestions.map((item, index) => (
                 <AnswerCard

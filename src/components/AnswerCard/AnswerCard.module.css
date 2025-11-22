@@ -70,6 +70,7 @@
 
 .feedbackButton {
   background: linear-gradient(90deg, #ff6b6b 0%, #ffa500 100%) !important;
+  display: none !important;
 }
 
 .reEvaluateButton {
