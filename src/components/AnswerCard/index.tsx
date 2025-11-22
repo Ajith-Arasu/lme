@@ -53,12 +53,15 @@ const AnswerCard: React.FC<AnswerCardProps> = ({
             </div>
 
             {/* Content */}
-            <div className={styles.questionTitle}>{question?.questionTitle}</div>
+            <div className={styles.contentContainer}>
 
-            <div className={styles.pageNumber}>Page : {question?.pageNumber}</div>
+                <div className={styles.questionTitle}>{question?.questionTitle}</div>
 
-            <div className={styles.answerBox}>
-                <p className={styles.answerText}>{question?.answer}</p>
+                <div className={styles.pageNumber}>Page : {question?.pageNumber}</div>
+
+                <div className={styles.answerBox}>
+                    <p className={styles.answerText}>{question?.answer}</p>
+                </div>
             </div>
         </div>
     );
