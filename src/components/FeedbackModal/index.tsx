@@ -9,16 +9,16 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import ReEvaluationColorIcon from "../../assets/img/reavluation-arraow-color.png";
-import styles from "./ReevaluateModal.module.css";
+import styles from "./FeedbackModal.module.css";
 
-interface ReevaluateModalProps {
+interface CommentModalProps {
     open: boolean;
     onClose: () => void;
     questionDetail: any;
     onSave: any;
 }
 
-const ReevaluateModal: React.FC<ReevaluateModalProps> = ({
+const CommentModal: React.FC<CommentModalProps> = ({
     open,
     onClose,
     questionDetail,
@@ -36,7 +36,7 @@ const ReevaluateModal: React.FC<ReevaluateModalProps> = ({
                 <div className={styles.titleContent}>
                     {/* Added the icon with a reddish color typical for comparison/swap */}
                     <img src={ReEvaluationColorIcon} alt="re-evaluation icon" className={styles.icon} />
-                    <span>Re-evaluation Application</span>
+                    <span>FeedBack</span>
                 </div>
 
                 <IconButton onClick={onClose} className={styles.closeButton} size="small">
@@ -53,10 +53,9 @@ const ReevaluateModal: React.FC<ReevaluateModalProps> = ({
                     multiline
                     minRows={5}
                     fullWidth
-                    value={questionDetail?.questionTitle || ""}
+                    placeholder="Enter your Feedback..."
                     className={styles.textField}
                     InputProps={{
-                        readOnly: true,
                         classes: {
                             root: styles.textFieldRoot,
                             notchedOutline: styles.noBorder,
@@ -84,4 +83,4 @@ const ReevaluateModal: React.FC<ReevaluateModalProps> = ({
     );
 };
 
-export default ReevaluateModal;
+export default CommentModal;

@@ -1,42 +1,62 @@
+import React from "react";
+import { Button } from "@mui/material";
+import SpeakerNotesIcon from "@mui/icons-material/SpeakerNotes";
+import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
+
 import styles from "./AnswerCard.module.css";
-import ReEvaluationColorIcon from "../../assets/img/reavluation-arraow-color.png";
 
 interface AnswerCardProps {
     question: any;
     onCommentClick: (questionNumber: number) => void;
+    onFeedbackClick?: (questionNumber: number) => void;
 }
 
 const AnswerCard: React.FC<AnswerCardProps> = ({
     question,
-    onCommentClick
+    onCommentClick,
+    onFeedbackClick
 }) => {
-
     return (
-        <div className={styles.card}>
+        <div className={styles.cardContainer}>
+
             {/* Header */}
             <div className={styles.header}>
-                <div className={styles.questionNumber}>
-                    <span className={styles.qNumber}>Question Number : {question?.questionNumber}</span>
-
-                    <span
-                        className={styles.addComment}
-                        onClick={() => onCommentClick(question?.questionNumber)}
-                    >
-                        <img src={ReEvaluationColorIcon} alt="re-evaluation icon" className={styles.icon} />
-                        Apply For Re-evaluation
+                <div className={styles.questionNumberGroup}>
+                    <span className={styles.qNumberText}>
+                        Question Number : {question?.questionNumber}
                     </span>
                 </div>
 
-                <span className={styles.score}>Score : {question?.score}</span>
+                {/* Buttons */}
+                <div className={styles.actionButtonsGroup}>
+                    <Button
+                        variant="contained"
+                        startIcon={<SpeakerNotesIcon />}
+                        onClick={() => onFeedbackClick && onFeedbackClick(question?.questionNumber)}
+                        className={`${styles.actionButton} ${styles.feedbackButton}`}
+                    >
+                        Request Feedback
+                    </Button>
+
+                    <Button
+                        variant="contained"
+                        startIcon={<CompareArrowsIcon />}
+                        onClick={() => onCommentClick(question?.questionNumber)}
+                        className={`${styles.actionButton} ${styles.reEvaluateButton}`}
+                    >
+                        Re-evaluate
+                    </Button>
+                    <span className={styles.scoreText}>Score : {question?.score}</span>
+                </div>
+
+
             </div>
 
-            {/* Question Title */}
-            <div className={styles.title}>{question?.questionTitle}</div>
+            {/* Content */}
+            <div className={styles.questionTitle}>{question?.questionTitle}</div>
 
-            {/* Page No */}
-            <div className={styles.page}>Page : {question?.pageNumber}</div>
+            <div className={styles.pageNumber}>Page : {question?.pageNumber}</div>
 
-            {/* Answer Area */}
             <div className={styles.answerBox}>
                 <p className={styles.answerText}>{question?.answer}</p>
             </div>
