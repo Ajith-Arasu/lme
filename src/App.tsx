@@ -5,6 +5,7 @@ import MainLayout from "./layout/MainLayout";
 import AnswerPage from "./pages/AnswerPage";
 import WorkingOnIt from "./components/WorkingOnIt";
 import EventDashboard from "./pages/StudentDashboard";
+import SubjectRegistration from "./pages/SubjectRegister";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/exam-events" element={<EventDashboard />} />
           <Route path="/exam-event" element={<Marklist />} />
           <Route path="/answer-page" element={<AnswerPage />} />
+          <Route path="/subject-registration-details" element={<SubjectRegistration />} />
           <Route path="/re-evaluation" element={<WorkingOnIt />} />
           <Route path="/settings" element={<WorkingOnIt />} />
           <Route path="/help" element={<WorkingOnIt />} />

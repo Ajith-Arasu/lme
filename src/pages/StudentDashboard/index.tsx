@@ -14,7 +14,7 @@ const StudentDashboard = () => {
         {
             sn: "01",
             shedule: "Click here to view Subject Registration Details",
-            link: "/exam-event"
+            link: "/subject-registration-details"
         },
         {
             sn: "02",
