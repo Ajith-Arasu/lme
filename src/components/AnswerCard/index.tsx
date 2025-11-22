@@ -5,6 +5,7 @@ import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
 import ReEvaluationColorIcon from "../../assets/img/reavluation-arraow-color.png";
 import InfoIcon from '@mui/icons-material/Info';
 import styles from "./AnswerCard.module.css";
+import LaunchIcon from '@mui/icons-material/Launch';
 
 interface AnswerCardProps {
     question: any;
@@ -69,7 +70,7 @@ const AnswerCard: React.FC<AnswerCardProps> = ({
                         Request Feedback
                     </Button>
 
-                    {question?.status ==="" && <Button
+                    {question?.status === "" && <Button
                         variant="contained"
                         startIcon={<CompareArrowsIcon />}
                         onClick={() => onReevaluationClick(question?.questionNumber)}
@@ -88,11 +89,11 @@ const AnswerCard: React.FC<AnswerCardProps> = ({
 
             {/* Content */}
             <div className={styles.contentContainer}>
-
-                <div className={styles.questionTitle}>{question?.questionTitle}</div>
-
+                <div className={styles.questionName}>
+                    <div className={styles.questionTitle}>{question?.questionTitle}</div>
+                    <LaunchIcon className={styles.launchIcon} />
+                </div>
                 <div className={styles.pageNumber}>Page : {question?.pageNumber}</div>
-
                 <div className={styles.answerBox}>
                     <p className={styles.answerText}>{question?.answer}</p>
                 </div>

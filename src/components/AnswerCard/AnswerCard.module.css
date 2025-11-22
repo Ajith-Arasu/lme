@@ -131,11 +131,23 @@
   font-weight: 600;
   font-size: 12px;
 }
-.infoIcon{
+
+.infoIcon {
   color: var(--text-green);
 }
-.scoreValue{
+
+.scoreValue {
   display: flex;
   align-items: center;
   gap: 5px;
+}
+
+.questionName {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.launchIcon {
+  color: var(--text-blue);
 }
