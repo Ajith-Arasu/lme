@@ -3,6 +3,8 @@ import styles from "./Navbar.module.css";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { useNavigate, useLocation } from "react-router-dom";
+import BreadCrumb from "../Breadcrumb";
+
 
 const Navbar = () => {
     const [dateTime, setDateTime] = useState<string>("");
@@ -37,17 +39,19 @@ const Navbar = () => {
         document.title = pageTitle;
     }, [pageTitle]);
 
+    const breadcrumbData = { activeLink: [{ linkLable: "MUI", linkRedirect: "/" }, { linkLable: "core", linkRedirect: "/material-ui/getting-started/installation/" }], inactiveLink: { label: "Breadcrumbs" } };
+
     return (
         <header className={styles.navbar}>
             {/* LEFT SIDE TITLE DYNAMIC */}
-            <div className={styles.left}>{pageTitle}</div>
+            <div className={styles.left}>{pageTitle} <BreadCrumb {...breadcrumbData} /></div>
 
             {/* RIGHT SIDE */}
             <div className={styles.right}>
-                <div className={styles.datetime}>
+                {dateTime && <div className={styles.datetime}>
                     <span><CalendarMonthIcon /></span>
                     <span>{dateTime}</span>
-                </div>
+                </div>}
 
                 {/* PROFILE HOVER WRAPPER */}
                 <div className={styles.profileWrapper}>
