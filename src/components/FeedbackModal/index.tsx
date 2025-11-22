@@ -8,7 +8,7 @@ import {
     Button,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import ReEvaluationColorIcon from "../../assets/img/reavluation-arraow-color.png";
+import SpeakerNotesIcon from "@mui/icons-material/SpeakerNotes";
 import styles from "./FeedbackModal.module.css";
 
 interface FeedbackModalProps {
@@ -35,7 +35,7 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({
             <DialogTitle className={styles.dialogTitle}>
                 <div className={styles.titleContent}>
                     {/* Added the icon with a reddish color typical for comparison/swap */}
-                    <img src={ReEvaluationColorIcon} alt="re-evaluation icon" className={styles.icon} />
+                    <SpeakerNotesIcon className={styles.icon} />
                     <span>FeedBack</span>
                 </div>
 
@@ -75,7 +75,7 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({
                         className={styles.applyButton}
                         onClick={onSave}
                     >
-                        Apply
+                        Add Feedback
                     </Button>
                 </div>
             </DialogContent>

@@ -3,12 +3,14 @@ import AnswerCard from "../../components/AnswerCard";
 import ReevaluateModal from "../../components/ReevaluateModal";
 import { Snackbar } from "@mui/material";
 import StudentDetailCard from "../../components/StudentDetailCard";
+import FeedbackModal from "../../components/FeedbackModal";
 
 const AnswerPage = () => {
-    const [open, setOpen] = useState(false);
+    const [openReevaluateModal, setOpenReevaluateModal] = useState(false);
+    const [openFeedbackModal, setOpenFeedbackModal] = useState(false);
     const [openSnackBar, setOpenSnackBar] = useState(false);
 
-    const [selectedQuestion, setSelectedQuestion] = useState<number | null>(null);
+    const [selectedQuestion, setSelectedQuestion] = useState<any>(null);
 
     const dummyQuestions = [
         {
@@ -63,58 +65,81 @@ Reaction Turbine
         }
     ];
 
-
-    const handleOpen = (questionDetail: any) => {
-        setSelectedQuestion(questionDetail);
-        setOpen(true);
+    // ---------------------- Reevaluation ----------------------
+    const handleOpenReevaluate = (question: any) => {
+        setSelectedQuestion(question);
+        setOpenReevaluateModal(true);
     };
 
-    const handleClose = () => {
-        setOpen(false);
+    const handleCloseReevaluate = () => {
+        setOpenReevaluateModal(false);
         setSelectedQuestion(null);
     };
 
-    const commentSave = () => {
+    const applyReevaluate = () => {
         setOpenSnackBar(true);
-        setOpen(false)
-        setTimeout(() => {
-            setOpenSnackBar(false);
-        }, 2000);
+        setOpenReevaluateModal(false);
+        setTimeout(() => setOpenSnackBar(false), 2000);
     };
 
+    // ---------------------- Feedback Modal ----------------------
+    const handleOpenFeedback = (question: any) => {
+        setSelectedQuestion(question);
+        setOpenFeedbackModal(true);
+    };
+
+    const handleCloseFeedback = () => {
+        setOpenFeedbackModal(false);
+        setSelectedQuestion(null);
+    };
+
+    const addFeedback = () => {
+        setOpenSnackBar(true);
+        setOpenFeedbackModal(false);
+        setTimeout(() => setOpenSnackBar(false), 2000);
+    };
 
     return (
-        <div >
+        <div>
             <StudentDetailCard />
+
             {dummyQuestions.map((item, index) => (
                 <AnswerCard
                     key={index}
                     question={item}
-                    onCommentClick={()=>{handleOpen(item)}}
+                    onReevaluationClick={() => handleOpenReevaluate(item)}
+                    onFeedbackClick={() => handleOpenFeedback(item)}
                 />
             ))}
 
-            {/* Modal */}
+            {/* Reevaluate Modal */}
             <ReevaluateModal
-                open={open}
-                onClose={handleClose}
-                onSave={commentSave}
+                open={openReevaluateModal}
+                onClose={handleCloseReevaluate}
+                onSave={applyReevaluate}
+                questionDetail={selectedQuestion}
+            />
+
+            {/* Feedback Modal (Now works like reevaluate) */}
+            <FeedbackModal
+                open={openFeedbackModal}
+                onClose={handleCloseFeedback}
+                onSave={addFeedback}
                 questionDetail={selectedQuestion}
             />
 
             <Snackbar
-                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                anchorOrigin={{ vertical: "top", horizontal: "center" }}
                 open={openSnackBar}
-                message="Re-evaluation submitted successfully!"
+                message="Feedback Added successfully!"
                 ContentProps={{
                     sx: {
                         backgroundColor: "var(--text-blue)",
-                        color: 'white',
-                        fontWeight: 'bold'
+                        color: "white",
+                        fontWeight: "bold"
                     }
                 }}
             />
-
         </div>
     );
 };

@@ -7,13 +7,13 @@ import styles from "./AnswerCard.module.css";
 
 interface AnswerCardProps {
     question: any;
-    onCommentClick: (questionNumber: number) => void;
+    onReevaluationClick: (questionNumber: number) => void;
     onFeedbackClick?: (questionNumber: number) => void;
 }
 
 const AnswerCard: React.FC<AnswerCardProps> = ({
     question,
-    onCommentClick,
+    onReevaluationClick,
     onFeedbackClick
 }) => {
     return (
@@ -41,7 +41,7 @@ const AnswerCard: React.FC<AnswerCardProps> = ({
                     <Button
                         variant="contained"
                         startIcon={<CompareArrowsIcon />}
-                        onClick={() => onCommentClick(question?.questionNumber)}
+                        onClick={() => onReevaluationClick(question?.questionNumber)}
                         className={`${styles.actionButton} ${styles.reEvaluateButton}`}
                     >
                         Re-evaluate

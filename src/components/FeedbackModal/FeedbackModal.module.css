@@ -104,3 +104,6 @@
 .applyButton:hover {
   background-color: #000060 !important;
 }
+.icon{
+  color: var(--text-blue);
+}
