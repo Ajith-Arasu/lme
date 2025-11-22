@@ -11,7 +11,7 @@ const Navbar = () => {
 
     // Route → Title mapping
     const pageTitles: Record<string, string> = {
-        "/marklist-report": "Mark List - Report",
+        "/marklist-report": "Exam Event",
         "/answer-page": "Answer Page",
         "/comments": "Comments",
         "/settings": "Settings",
