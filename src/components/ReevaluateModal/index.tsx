@@ -49,20 +49,10 @@ const ReevaluateModal: React.FC<ReevaluateModalProps> = ({
                     Question Number : {questionDetail?.questionNumber}
                 </div>
 
-                <TextField
-                    multiline
-                    minRows={5}
-                    fullWidth
-                    value={questionDetail?.questionTitle || ""}
-                    className={styles.textField}
-                    InputProps={{
-                        readOnly: true,
-                        classes: {
-                            root: styles.textFieldRoot,
-                            notchedOutline: styles.noBorder,
-                        },
-                    }}
-                />
+                <div className={styles.questionText}>
+                    {questionDetail?.questionTitle || ""}
+                </div>
+
 
                 <div className={styles.buttonContainer}>
                     <Button
