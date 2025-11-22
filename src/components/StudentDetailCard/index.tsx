@@ -22,6 +22,13 @@ const StudentDetailCard = () => {
                 <p>Batch : <span className={styles.label}>2019 - 2023</span></p>
                 <p>Year / Semester : <span className={styles.label}>Semester 7</span></p>
             </div>
+
+            <div className={styles.markCard}>
+                <div>30.00</div>
+                <div className={styles.line}></div>
+                <div>50.00</div>
+            </div>
+
         </div>
     </div>)
 }

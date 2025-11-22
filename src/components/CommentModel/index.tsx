@@ -28,7 +28,7 @@ const CommentModal: React.FC<CommentModalProps> = ({
     return (
         <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth classes={{ paper: styles.dialogPaper }}>
             <DialogTitle className={styles.dialogTitle}>
-                Question Comments
+                Re-evaluation Application                
                 <IconButton onClick={onClose} className={styles.dialogCloseButton}>
                     <CloseIcon />
                 </IconButton>

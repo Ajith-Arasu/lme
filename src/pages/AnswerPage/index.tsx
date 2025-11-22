@@ -2,6 +2,7 @@ import { useState } from "react";
 import AnswerCard from "../../components/AnswerCard";
 import CommentModal from "../../components/CommentModel";
 import { Snackbar } from "@mui/material";
+import StudentDetailCard from "../../components/StudentDetailCard";
 
 const AnswerPage = () => {
     const [open, setOpen] = useState(false);
@@ -30,6 +31,32 @@ Propeller is driven by turbine
 Fan is driven by turbine
 Larger mass flow rate`,
         },
+        {
+            questionNumber: 3,
+            score: "3.00 / 5.00",
+            questionTitle: "Differentiate between Ramjet and Scramjet engines",
+            pageNumber: 2,
+            answer: `Ramjet
+• Combustion occurs at subsonic speeds
+• Effective up to Mach 3-6
+
+Scramjet
+• Combustion occurs at supersonic speeds
+• Effective at hypersonic speeds (Mach 6+)`,
+        },
+        {
+            questionNumber: 4,
+            score: "4.50 / 5.00",
+            questionTitle: "Explain the difference between Impulse and Reaction turbines",
+            pageNumber: 3,
+            answer: `Impulse Turbine
+• Pressure drop occurs only in the nozzle
+• Kinetic energy changes across the rotor
+
+Reaction Turbine
+• Pressure drop occurs in both nozzle and rotor
+• Uses both impulse and reaction forces`,
+        }
     ];
 
     const handleOpen = (questionNumber: number) => {
@@ -53,6 +80,7 @@ Larger mass flow rate`,
 
     return (
         <div >
+            <StudentDetailCard />
             {dummyQuestions.map((item, index) => (
                 <AnswerCard
                     key={index}

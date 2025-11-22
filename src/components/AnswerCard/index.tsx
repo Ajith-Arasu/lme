@@ -1,5 +1,5 @@
 import styles from "./AnswerCard.module.css";
-import InsertCommentIcon from '@mui/icons-material/InsertComment';
+import ReEvaluationColorIcon from "../../assets/img/reavluation-arraow-color.png";
 
 interface AnswerCardProps {
     questionNumber: number;
@@ -30,8 +30,8 @@ const AnswerCard: React.FC<AnswerCardProps> = ({
                         className={styles.addComment}
                         onClick={() => onCommentClick(questionNumber)}
                     >
-                        <InsertCommentIcon className={styles.icon} />
-                        Add Comment
+                        <img src={ReEvaluationColorIcon} alt="re-evaluation icon" className={styles.icon}/>
+                        Apply For Re-evaluation
                     </span>
                 </div>
 

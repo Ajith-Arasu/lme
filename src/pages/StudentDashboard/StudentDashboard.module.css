@@ -1,0 +1,55 @@
+.container {
+    width: 100%;
+}
+
+.StudentDashboardcard {
+    border: 1px solid var(--border-blue);
+    border-radius: 20px;
+}
+
+
+/* ---------- TABLE STYLING ---------- */
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th {
+    background: var(--bg-blue);
+}
+.table th:first-child{
+    border-radius: 20px 0 0 0;
+}
+.table th:last-child{
+    border-radius: 0 20px 0 0;
+}
+.table th,
+.table td {
+    padding: 10px;
+}
+
+/* vertical lines only */
+.table th,
+.table td {
+    border-right: 1px solid #ccc;
+}
+
+/* remove last column border */
+.table th:last-child,
+.table td:last-child {
+    border-right: none;
+}
+
+/* remove horizontal lines */
+.table tr {
+    border-bottom: 0;
+    font-size: 14px;
+}
+
+.tableSheetView {
+    display: flex;
+    align-items: center;
+    color: var(--text-blue);
+    cursor: pointer;
+}

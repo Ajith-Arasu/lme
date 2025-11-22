@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import ChatIcon from "@mui/icons-material/Chat";
 import SettingsIcon from "@mui/icons-material/Settings";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import LogoutIcon from "@mui/icons-material/Logout";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-
+import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 import bigLogo from "../../assets/img/big-logo.png";
 import smallLogo from "../../assets/img/small-logo.png";
 
@@ -39,14 +38,14 @@ const Sidebar: React.FC = () => {
 
       {/* Menu Items */}
       <nav className={styles.menu}>
-        <NavLink to="/marklist-report" className={styles.menuItem}>
+        <NavLink to="/student-dashboard" className={styles.menuItem}>
           <DashboardIcon className={styles.icon} />
-          {open && <span className={styles.menuItemText}>Marklist Report</span>}
+          {open && <span className={styles.menuItemText}>Exam Events</span>}
         </NavLink>
 
-        <NavLink to="/comments" className={styles.menuItem}>
-          <ChatIcon className={styles.icon} />
-          {open && <span className={styles.menuItemText}>Comments</span>}
+        <NavLink to="/re-evaluation" className={styles.menuItem}>
+          <SwapHorizIcon className={styles.icon} />
+          {open && <span className={styles.menuItemText}>My Re-evaluations</span>}
         </NavLink>
 
         <NavLink to="/settings" className={styles.menuItem}>
