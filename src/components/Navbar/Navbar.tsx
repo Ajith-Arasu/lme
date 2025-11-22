@@ -16,7 +16,7 @@ const Navbar = () => {
     const pageTitles: Record<string, string> = {
         "/exam-events": "Exam Events",
         "/exam-event": "Exam Event",
-        "/answer-page": "Exam / title",
+        "/answer-page": "Exam  Answer",
         "/comments": "Comments",
         "/settings": "Settings",
         "/help": "Help",

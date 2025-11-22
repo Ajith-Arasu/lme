@@ -4,51 +4,26 @@ const formatLabel = (segment: string) => {
         .replace(/\b\w/g, (c) => c.toUpperCase());
 };
 
- export const generateBreadcrumb = (pathname: string) => {
+export const generateBreadcrumb = (pathname: string) => {
     switch (pathname) {
         case "/exam-events":
             return {
                 activeLink: [],
-                inactiveLink: { label: "Exam Events" }
+                inactiveLink: {}
             };
-            case "/exam-event":
+        case "/exam-event":
             return {
                 activeLink: [{ linkLable: "Exam Events", linkRedirect: "/exam-events" }],
-                inactiveLink: { label: "Exam Event" }
+                inactiveLink: { label: "Event" }
             };
-        case "/users":
+        case "/answer-page":
             return {
-                activeLink: [
-                    { linkLable: "Dashboard", linkRedirect: "/" }
-                ],
-                inactiveLink: { label: "Users" }
-            };
-        case "/users/details":
-            return {
-                activeLink: [
-                    { linkLable: "Dashboard", linkRedirect: "/" },
-                    { linkLable: "Users", linkRedirect: "/users" }
-                ],
-                inactiveLink: { label: "User Details" }
-            };
-        case "/settings":
-            return {
-                activeLink: [
-                    { linkLable: "Dashboard", linkRedirect: "/" }
-                ],
-                inactiveLink: { label: "Settings" }
-            };
-        case "/settings/profile":
-            return {
-                activeLink: [
-                    { linkLable: "Dashboard", linkRedirect: "/" },
-                    { linkLable: "Settings", linkRedirect: "/settings" }
-                ],
-                inactiveLink: { label: "Profile" }
+                activeLink: [{ linkLable: "Exam Events", linkRedirect: "/exam-events" }, { linkLable: "Event", linkRedirect: "/exam-event" }],
+                inactiveLink: { label: "Exam Answer" }
             };
         default:
             return {
-                activeLink: [{ linkLable: "Dashboard", linkRedirect: "/" }],
+                activeLink: [{ linkLable: "Exam Events", linkRedirect: "/exam-events" }],
                 inactiveLink: { label: formatLabel(pathname.replace("/", "")) }
             };
     }

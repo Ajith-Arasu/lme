@@ -1,4 +1,5 @@
-import { Breadcrumbs, Link, Typography } from "@mui/material";
+import { Breadcrumbs, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 interface LinkData {
     linkLable: string;
@@ -7,47 +8,47 @@ interface LinkData {
 
 interface BreadcrumbProps {
     activeLink: LinkData[];
-    inactiveLink: { label: string };
+    inactiveLink: { label?: string };
 }
 
 const BreadCrumb = (data: BreadcrumbProps) => {
+    const navigate = useNavigate();
+
     return (
-        <Breadcrumbs 
+        <Breadcrumbs
             aria-label="breadcrumb"
             sx={{
-                // Target the list items (li) which contain the links and separators
                 '& .MuiBreadcrumbs-li': {
-                    // Reduce the default horizontal margin applied by MUI
-                    paddingRight: '0px', 
-                    paddingLeft: '0px', 
+                    paddingRight: '0px',
+                    paddingLeft: '0px',
                 },
-                // Target the separator (/) element
                 '& .MuiBreadcrumbs-separator': {
-                     fontSize: '12px',
-                    // Reduce the space around the separator
-                    marginLeft: '3px', 
+                    fontSize: '12px',
+                    marginLeft: '3px',
                     marginRight: '3px',
                 },
             }}
         >
-            {/* Traversable Links (Active/Clickable Links) */}
+            {/* Traversable links */}
             {data.activeLink.map((item, index) => (
-                <Link
+                <Typography
                     key={index}
-                    underline="hover"
-                    color="inherit"
-                    href={item.linkRedirect}
+                    onClick={() => navigate(item.linkRedirect)}
                     sx={{
                         fontSize: '12px',
                         fontWeight: 'bold',
-                        color: ' var(--text-blue)',
+                        color: 'var(--text-blue)',
+                        cursor: 'pointer',
+                        '&:hover': {
+                            textDecoration: 'underline',
+                        }
                     }}
                 >
                     {item.linkLable}
-                </Link>
+                </Typography>
             ))}
 
-            {/* Current Page (Inactive/Non-clickable Link) */}
+            {/* Current Page */}
             <Typography
                 sx={{
                     fontSize: '12px',
