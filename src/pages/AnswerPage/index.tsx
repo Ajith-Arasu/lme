@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AnswerCard from "../../components/AnswerCard";
-import CommentModal from "../../components/CommentModel";
+import CommentModal from "../../components/ReevaluateModal";
 import { Snackbar } from "@mui/material";
 import StudentDetailCard from "../../components/StudentDetailCard";
 
