@@ -36,3 +36,8 @@
   border-radius: 8px;
   cursor: pointer;
 }
+.error {
+  color: #e63946;
+  font-size: 13px;
+  margin: 4px 0 10px 0;
+}
