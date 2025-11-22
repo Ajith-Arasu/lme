@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import styles from "./StudentDashboard.module.css";
+import styles from "./ExamEvents.module.css";
 
 interface MarkItem {
     sn: string;

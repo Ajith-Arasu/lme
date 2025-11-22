@@ -4,7 +4,7 @@ import Marklist from "./pages/ExamEvent";
 import MainLayout from "./layout/MainLayout";
 import AnswerPage from "./pages/AnswerPage";
 import WorkingOnIt from "./components/WorkingOnIt";
-import EventDashboard from "./pages/StudentDashboard";
+import EventDashboard from "./pages/Exam Events";
 import SubjectRegistration from "./pages/SubjectRegister";
 
 const App = () => {
