@@ -3,13 +3,13 @@ import styles from "./Login.module.css";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-
+import {useState} from 'react'
 interface LoginFormValues {
   username: string;
   password: string;
 }
 
-// Yup schema for validation
+// Yup schema for required fields
 const schema = yup.object({
   username: yup.string().required("Username is required"),
   password: yup.string().required("Password is required"),
@@ -17,18 +17,21 @@ const schema = yup.object({
 
 const Login = () => {
   const navigate = useNavigate();
+  const [loginError, setLoginError] = useState("");
 
   const { register, handleSubmit, formState: { errors } } = useForm<LoginFormValues>({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: LoginFormValues) => {
+  const onSubmit: any = (data:any) => {
     const { username, password } = data;
 
-    if (username === "admin" && password === "12345") {
+    // Dummy login check
+    if (username === "demouser" && password === "demo@123") {
+      setLoginError("");
       navigate("/exam-events");
     } else {
-      alert("Invalid username or password.");
+      setLoginError("Invalid username or password.");
     }
   };
 
@@ -58,6 +61,9 @@ const Login = () => {
         {errors.password && (
           <p className={styles.error}>{errors.password.message}</p>
         )}
+
+        {/* Invalid credentials */}
+        {loginError && <p className={styles.error}>{loginError}</p>}
 
         <button type="submit" className={styles.button}>
           Login
