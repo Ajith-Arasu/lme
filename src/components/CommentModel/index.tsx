@@ -5,58 +5,69 @@ import {
     DialogTitle,
     IconButton,
     TextField,
-    Button
+    Button,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import ReEvaluationColorIcon from "../../assets/img/reavluation-arraow-color.png";
 import styles from "./CommentModal.module.css";
 
 interface CommentModalProps {
     open: boolean;
     onClose: () => void;
-    questionNumber: number | null;
-    onSave: any
+    questionDetail: any;
+    onSave: any;
 }
 
 const CommentModal: React.FC<CommentModalProps> = ({
     open,
     onClose,
-    questionNumber,
-    onSave
+    questionDetail,
+    onSave,
 }) => {
     const [comment, setComment] = useState("");
-
+    console.log("questionDetail==>", questionDetail)
     return (
-        <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth classes={{ paper: styles.dialogPaper }}>
+        <Dialog
+            open={open}
+            onClose={onClose}
+            maxWidth="md"
+            fullWidth
+            classes={{ paper: styles.dialogPaper }}
+        >
             <DialogTitle className={styles.dialogTitle}>
-                Re-evaluation Application                
-                <IconButton onClick={onClose} className={styles.dialogCloseButton}>
-                    <CloseIcon />
+                <div className={styles.titleContent}>
+                    {/* Added the icon with a reddish color typical for comparison/swap */}
+                    <img src={ReEvaluationColorIcon} alt="re-evaluation icon" className={styles.icon} />
+                    <span>Re-evaluation Application</span>
+                </div>
+
+                <IconButton onClick={onClose} className={styles.closeButton} size="small">
+                    <CloseIcon fontSize="small" />
                 </IconButton>
             </DialogTitle>
 
-            <DialogContent>
+            <DialogContent className={styles.dialogContent}>
                 <div className={styles.questionNumber}>
-                    Question Number : {questionNumber}
+                    Question Number : {questionDetail?.questionNumber}
                 </div>
 
                 <TextField
                     multiline
-                    minRows={4}
+                    minRows={5}
                     fullWidth
-                    value={comment}
-                    onChange={(e) => setComment(e.target.value)}
-                    placeholder="Enter your comment..."
+                    value={questionDetail?.questionTitle || ""}
                     className={styles.textField}
                     InputProps={{
+                        readOnly: true,
                         classes: {
-                            root: styles.textFieldRoot
-                        }
+                            root: styles.textFieldRoot,
+                            notchedOutline: styles.noBorder,
+                        },
                     }}
                 />
 
                 <div className={styles.buttonContainer}>
                     <Button
-                        variant="outlined"
                         onClick={onClose}
                         className={styles.cancelButton}
                     >
@@ -64,11 +75,10 @@ const CommentModal: React.FC<CommentModalProps> = ({
                     </Button>
 
                     <Button
-                        variant="outlined"
-                        className={styles.saveButton}
+                        className={styles.applyButton}
                         onClick={onSave}
                     >
-                        Save
+                        Apply
                     </Button>
                 </div>
             </DialogContent>

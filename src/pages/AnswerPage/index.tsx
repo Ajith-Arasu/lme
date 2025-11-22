@@ -18,6 +18,7 @@ const AnswerPage = () => {
             pageNumber: 1,
             answer: `Jet engines require oxygen for combustion.
 They cannot operate in the absence of an atmosphere.`,
+            status: "reevaluation applied"
         },
         {
             questionNumber: 2,
@@ -30,6 +31,7 @@ Propeller is driven by turbine
 
 Fan is driven by turbine
 Larger mass flow rate`,
+            status: "approved"
         },
         {
             questionNumber: 3,
@@ -43,6 +45,7 @@ Larger mass flow rate`,
 Scramjet
 • Combustion occurs at supersonic speeds
 • Effective at hypersonic speeds (Mach 6+)`,
+            status: "rejected"
         },
         {
             questionNumber: 4,
@@ -56,11 +59,13 @@ Scramjet
 Reaction Turbine
 • Pressure drop occurs in both nozzle and rotor
 • Uses both impulse and reaction forces`,
+            status: "approved"
         }
     ];
 
-    const handleOpen = (questionNumber: number) => {
-        setSelectedQuestion(questionNumber);
+
+    const handleOpen = (questionDetail: any) => {
+        setSelectedQuestion(questionDetail);
         setOpen(true);
     };
 
@@ -89,7 +94,7 @@ Reaction Turbine
                     questionTitle={item.questionTitle}
                     pageNumber={item.pageNumber}
                     answer={item.answer}
-                    onCommentClick={handleOpen}
+                    onCommentClick={()=>{handleOpen(item)}}
                 />
             ))}
 
@@ -98,13 +103,13 @@ Reaction Turbine
                 open={open}
                 onClose={handleClose}
                 onSave={commentSave}
-                questionNumber={selectedQuestion}
+                questionDetail={selectedQuestion}
             />
 
             <Snackbar
                 anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                 open={openSnackBar}
-                message="Comment Added Successfully!"
+                message="Re-evaluation submitted successfully!"
                 ContentProps={{
                     sx: {
                         backgroundColor: "var(--text-blue)",
