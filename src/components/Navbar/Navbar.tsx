@@ -4,6 +4,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { useNavigate, useLocation } from "react-router-dom";
 import BreadCrumb from "../Breadcrumb";
+import { generateBreadcrumb } from "../../utils";
 
 
 const Navbar = () => {
@@ -39,7 +40,7 @@ const Navbar = () => {
         document.title = pageTitle;
     }, [pageTitle]);
 
-    const breadcrumbData = { activeLink: [{ linkLable: "MUI", linkRedirect: "/" }, { linkLable: "core", linkRedirect: "/material-ui/getting-started/installation/" }], inactiveLink: { label: "Breadcrumbs" } };
+const breadcrumbData = generateBreadcrumb(location.pathname);
 
     return (
         <header className={styles.navbar}>
