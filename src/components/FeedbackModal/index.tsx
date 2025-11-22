@@ -11,14 +11,14 @@ import CloseIcon from "@mui/icons-material/Close";
 import ReEvaluationColorIcon from "../../assets/img/reavluation-arraow-color.png";
 import styles from "./FeedbackModal.module.css";
 
-interface CommentModalProps {
+interface FeedbackModalProps {
     open: boolean;
     onClose: () => void;
     questionDetail: any;
     onSave: any;
 }
 
-const CommentModal: React.FC<CommentModalProps> = ({
+const FeedbackModal: React.FC<FeedbackModalProps> = ({
     open,
     onClose,
     questionDetail,
@@ -83,4 +83,4 @@ const CommentModal: React.FC<CommentModalProps> = ({
     );
 };
 
-export default CommentModal;
+export default FeedbackModal;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AnswerCard from "../../components/AnswerCard";
-import CommentModal from "../../components/ReevaluateModal";
+import ReevaluateModal from "../../components/ReevaluateModal";
 import { Snackbar } from "@mui/material";
 import StudentDetailCard from "../../components/StudentDetailCard";
 
@@ -95,7 +95,7 @@ Reaction Turbine
             ))}
 
             {/* Modal */}
-            <CommentModal
+            <ReevaluateModal
                 open={open}
                 onClose={handleClose}
                 onSave={commentSave}
