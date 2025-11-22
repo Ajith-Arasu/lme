@@ -2,20 +2,12 @@ import styles from "./AnswerCard.module.css";
 import ReEvaluationColorIcon from "../../assets/img/reavluation-arraow-color.png";
 
 interface AnswerCardProps {
-    questionNumber: number;
-    score: string;
-    questionTitle: string;
-    pageNumber: number;
-    answer: string;
+    question: any;
     onCommentClick: (questionNumber: number) => void;
 }
 
 const AnswerCard: React.FC<AnswerCardProps> = ({
-    questionNumber,
-    score,
-    questionTitle,
-    pageNumber,
-    answer,
+    question,
     onCommentClick
 }) => {
 
@@ -24,29 +16,29 @@ const AnswerCard: React.FC<AnswerCardProps> = ({
             {/* Header */}
             <div className={styles.header}>
                 <div className={styles.questionNumber}>
-                    <span className={styles.qNumber}>Question Number : {questionNumber}</span>
+                    <span className={styles.qNumber}>Question Number : {question?.questionNumber}</span>
 
                     <span
                         className={styles.addComment}
-                        onClick={() => onCommentClick(questionNumber)}
+                        onClick={() => onCommentClick(question?.questionNumber)}
                     >
-                        <img src={ReEvaluationColorIcon} alt="re-evaluation icon" className={styles.icon}/>
+                        <img src={ReEvaluationColorIcon} alt="re-evaluation icon" className={styles.icon} />
                         Apply For Re-evaluation
                     </span>
                 </div>
 
-                <span className={styles.score}>Score : {score}</span>
+                <span className={styles.score}>Score : {question?.score}</span>
             </div>
 
             {/* Question Title */}
-            <div className={styles.title}>{questionTitle}</div>
+            <div className={styles.title}>{question?.questionTitle}</div>
 
             {/* Page No */}
-            <div className={styles.page}>Page : {pageNumber}</div>
+            <div className={styles.page}>Page : {question?.pageNumber}</div>
 
             {/* Answer Area */}
             <div className={styles.answerBox}>
-                <p className={styles.answerText}>{answer}</p>
+                <p className={styles.answerText}>{question?.answer}</p>
             </div>
         </div>
     );

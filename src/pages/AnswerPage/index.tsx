@@ -79,7 +79,7 @@ Reaction Turbine
         setOpen(false)
         setTimeout(() => {
             setOpenSnackBar(false);
-        }, 1000);
+        }, 2000);
     };
 
 
@@ -89,11 +89,7 @@ Reaction Turbine
             {dummyQuestions.map((item, index) => (
                 <AnswerCard
                     key={index}
-                    questionNumber={item.questionNumber}
-                    score={item.score}
-                    questionTitle={item.questionTitle}
-                    pageNumber={item.pageNumber}
-                    answer={item.answer}
+                    question={item}
                     onCommentClick={()=>{handleOpen(item)}}
                 />
             ))}
