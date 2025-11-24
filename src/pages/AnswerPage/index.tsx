@@ -1,10 +1,10 @@
 import { useState } from "react";
 import AnswerCard from "../../components/AnswerCard";
 import ReevaluateModal from "../../components/ReevaluateModal";
-import { Snackbar } from "@mui/material";
+import { Button, Snackbar } from "@mui/material";
 import FeedbackModal from "../../components/FeedbackModal";
 import ExamDetailCard from "../../components/ExamDetailCard";
-
+import styles from './AnswerPage.module.css'
 const AnswerPage = () => {
     const [openReevaluateModal, setOpenReevaluateModal] = useState(false);
     const [openFeedbackModal, setOpenFeedbackModal] = useState(false);
@@ -111,7 +111,9 @@ Reaction Turbine
                     onFeedbackClick={() => handleOpenFeedback(item)}
                 />
             ))}
-
+            <div className={styles.submitButton}>
+                <Button variant="contained" >Submit</Button>
+            </div>
             {/* Reevaluate Modal */}
             <ReevaluateModal
                 open={openReevaluateModal}
