@@ -17,7 +17,7 @@ const App = () => {
         {/* Protected Layout */}
         <Route element={<MainLayout />}>
           <Route path="/exam-events" element={<EventDashboard />} />
-          <Route path="/exam-event" element={<Marklist />} />
+          <Route path="/exam-event/:id" element={<Marklist />} />
           <Route path="/answer-page" element={<AnswerPage />} />
           <Route path="/subject-registration-details" element={<SubjectRegistration />} />
           <Route path="/re-evaluation" element={<WorkingOnIt />} />
