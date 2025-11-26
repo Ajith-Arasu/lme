@@ -33,17 +33,16 @@ export const loginService = async (
   payload: LoginRequest
 ): Promise<LoginResponse> => {
   const response = await api.post<LoginResponse>(LOGIN_URL, payload);
-
   // Save tokens
-  // if (response?.data?.data?.access_token) {
-  //   localStorage.setItem("access_token", response.data.data.access_token);
-  // }
-  // if (response.data.data.refresh_token) {
-  //   localStorage.setItem("refresh_token", response.data.data.refresh_token);
-  // }
+  if (response?.data?.data?.access_token) {
+    localStorage.setItem("access_token", response.data.data.access_token);
+  }
+  if (response.data.data.refresh_token) {
+    localStorage.setItem("refresh_token", response.data.data.refresh_token);
+  }
 
-  // // Save student info (optional)
-  // localStorage.setItem("student", JSON.stringify(response.data.data.student));
+  // Save student info (optional)
+  localStorage.setItem("student", JSON.stringify(response.data.data.student));
 
   return response.data;
 };

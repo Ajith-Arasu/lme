@@ -1,10 +1,9 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 
 // -----------------------------
 // Load Environment Variables
 // -----------------------------
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
-console.log("BASE_URL==>",BASE_URL)
 const TIMEOUT = Number(import.meta.env.VITE_API_TIMEOUT ?? 20000);
 
 // -----------------------------
@@ -47,7 +46,7 @@ api.interceptors.request.use(
 // -----------------------------
 api.interceptors.response.use(
   (response) => response,
-  async (error: AxiosError) => {
+  async (error: any) => {
     const originalRequest: any = error.config;
 
     // Handle 401 Unauthorized (Token Expired)
@@ -90,7 +89,7 @@ api.interceptors.response.use(
 function logoutUser() {
   localStorage.removeItem("access_token");
   localStorage.removeItem("refresh_token");
-  window.location.href = "/login";
+  window.location.href = "/";
 }
 
 // -----------------------------
