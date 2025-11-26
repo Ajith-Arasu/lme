@@ -8,9 +8,7 @@ export const getActiveExamEvents = async (
 ) => {
   const response = await api.get(EVENTS_URL, {
     params: {
-      university_id,
-      count,
-      page,
+      university_id
     },
   });
 
