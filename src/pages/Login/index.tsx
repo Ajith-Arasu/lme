@@ -3,8 +3,9 @@ import styles from "./Login.module.css";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import {useState} from 'react'
+import { useState } from 'react'
 import LMELOGO from '../../assets/img/lme-logo.jpg'
+import { loginService } from "../../API/services/auth.service";
 interface LoginFormValues {
   username: string;
   password: string;
@@ -24,22 +25,28 @@ const Login = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit: any = (data:any) => {
-    const { username, password } = data;
-
-    // Dummy login check
-    if (username === "demouser" && password === "demo@123") {
-      setLoginError("");
-      navigate("/exam-events");
-    } else {
-      setLoginError("Invalid username or password.");
+  const onSubmit = async (data: LoginFormValues) => {
+    try {
+      const res = await loginService({
+        student_login_id: data.username,
+        student_password: data.password,
+      });
+      if (res?.statusCode === 200) {
+        // Redirect to page
+        navigate("/exam-events");
+      } else {
+        setLoginError("Invalid credentials");
+      }
+    } catch (err: any) {
+      console.error(err);
+      setLoginError("Login failed. Please try again.");
     }
   };
 
   return (
     <div className={styles.container}>
       <form className={styles.card} onSubmit={handleSubmit(onSubmit)}>
-        <img src={LMELOGO} alt="lmn-logo" className={styles.logo}/>
+        <img src={LMELOGO} alt="lmn-logo" className={styles.logo} />
 
         {/* Username Field */}
         <input
