@@ -90,14 +90,24 @@ const AnswerCard: React.FC<AnswerCardProps> = ({
             {/* Content */}
             <div className={styles.contentContainer}>
                 <div className={styles.questionName}>
-                    <div className={styles.questionTitle}>{question?.questionTitle}</div>
+                    <div
+                        className={styles.questionTitle}
+                        dangerouslySetInnerHTML={{ __html: question?.questionTitle || "" }}
+                    ></div>
+
                     <LaunchIcon className={styles.launchIcon} />
                 </div>
+
                 <div className={styles.pageNumber}>Page : {question?.pageNumber}</div>
                 <div className={styles.answerBox}>
-                    <p className={styles.answerText}>{question?.answer}</p>
+                    <img
+                        src="https://via.placeholder.com/400x300?text=Sample+Image"
+                        alt="Sample Answer"
+                        className={styles.answerImage}
+                    />
                 </div>
             </div>
+
         </div>
     );
 };

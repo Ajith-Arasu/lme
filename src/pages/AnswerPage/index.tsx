@@ -20,57 +20,7 @@ const AnswerPage = () => {
 
     const [selectedQuestion, setSelectedQuestion] = useState<any>(null);
 
-    const [questions, setQuestions] = useState<any[]>([
-        {
-            questionNumber: 1,
-            score: "3.50 / 5.00",
-            questionTitle: "What makes jet engines incapable of interplanetary missions?",
-            pageNumber: 1,
-            answer: `Jet engines require oxygen for combustion.
-They cannot operate in the absence of an atmosphere.`,
-            status: ""
-        },
-        {
-            questionNumber: 2,
-            score: "2.50 / 5.00",
-            questionTitle: "Distinguish between turboprop and turbofan systems",
-            pageNumber: 1,
-            answer: `Turboprop
-Propeller is driven by turbine
-Smaller mass flow rate
-
-Fan is driven by turbine
-Larger mass flow rate`,
-            status: "applied"
-        },
-        {
-            questionNumber: 3,
-            score: "3.00 / 5.00",
-            questionTitle: "Differentiate between Ramjet and Scramjet engines",
-            pageNumber: 2,
-            answer: `Ramjet
-Combustion at subsonic speeds
-Effective up to Mach 3-6
-
-Scramjet
-Combustion at supersonic speeds
-Effective above Mach 6`,
-            status: "rejected"
-        },
-        {
-            questionNumber: 4,
-            score: "4.50 / 5.00",
-            questionTitle: "Explain the difference between Impulse and Reaction turbines",
-            pageNumber: 3,
-            answer: `Impulse Turbine
-Pressure drop occurs only in nozzle
-Kinetic energy changes across rotor
-
-Reaction Turbine
-Pressure drop occurs in both nozzle and rotor`,
-            status: "approved"
-        }
-    ]);
+    const [questions, setQuestions] = useState<any[]>([]);
 
     useNavigationBlocker(!isSubmitted);
     const navigate = useNavigate();
@@ -125,23 +75,26 @@ Pressure drop occurs in both nozzle and rotor`,
     useEffect(() => {
         const fetchAnswers = async () => {
             try {
-                const res = await getStudentExamAnswers("34178", "3166");
-                console.log("Answer result ==>", res)
+                const res = await getStudentExamAnswers("3166");
+                console.log("Answer result ==>", res);
+
                 if (res?.statusCode === 200 && Array.isArray(res?.data)) {
 
-                    // Convert API response into your component format
                     const formatted = res.data.map((item: any, idx: number) => ({
                         questionNumber: idx + 1,
-                        score: item.score || "-",
-                        questionTitle: item.question_title || "Untitled",
+                        questionId: item.question_id,
+                        questionTitle: item.question || "Untitled",
+                        questionImage: item.question_image || "",
                         pageNumber: item.page_number || 1,
-                        answer: item.answer_text || "",
+                        answerText: item.answer_text || "",
+                        score: item.score ?? "-",
                         status: item.status || "",
+                        remarks: item.remarks || "",
+                        maxMarks: item.max_marks || null,
+                        evaluatorName: item.evaluator_name || null,
                     }));
-                    if (formatted.length) {
-                        setQuestions(formatted);
-                    }
-
+                    console.log("formatted==>", formatted)
+                    setQuestions(formatted);
                 }
             } catch (error) {
                 console.error("Failed to load exam answers:", error);
@@ -150,6 +103,7 @@ Pressure drop occurs in both nozzle and rotor`,
 
         fetchAnswers();
     }, []);
+
 
 
     return (

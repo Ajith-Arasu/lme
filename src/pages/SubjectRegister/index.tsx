@@ -8,19 +8,13 @@ interface ExamItem {
   examDate: string;
 }
 
-const examData: ExamItem[] = [
-  { sNo: "01", subject: "Advanced Propulsion System", subjectCode: "AAE 4043", examDate: "03- Dec-2024 (03:00 PM - 04:00 PM)" },
-  { sNo: "02", subject: "Aircraft Design Project", subjectCode: "AAE 4045", examDate: "06- Dec-2024 (03:00 PM - 04:00 PM)" },
-  { sNo: "03", subject: "Aerodynamics - II", subjectCode: "AAE 4041", examDate: "10- Dec-2024 (03:00 PM - 04:00 PM)" },
-  { sNo: "04", subject: "Aircraft Structures - II", subjectCode: "AAE 4042", examDate: "15- Dec-2024 (03:00 PM - 04:00 PM)" },
-  { sNo: "05", subject: "Flight Dynamics and Control", subjectCode: "AAE 4044", examDate: "18- Dec-2024 (03:00 PM - 04:00 PM)" },
-];
+const examData: ExamItem[] = [];
 
 const SubjectRegistration: React.FC = () => {
   return (
     <div className={styles.mainWrapper}>
       <div className={styles.cardContainer}>
-        
+
         <div className={styles.header}>LM Testing All Type Questions</div>
 
         <table className={styles.table}>

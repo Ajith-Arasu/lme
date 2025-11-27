@@ -20,51 +20,17 @@ interface MarkItem {
 const Marklist = () => {
   const navigate = useNavigate();
 
-  const [rows, setRows] = useState<MarkItem[]>([
-    {
-      sn: "01",
-      subject: "Advanced Propulsion System [AAE 4043]",
-      date: "03-Dec-2024",
-      questionPaper: "QP_4043.pdf",
-      answerKeys: "Key_4043.pdf",
-      view: "View",
-      marks: "30.00 / 50.00",
-    },
-    {
-      sn: "02",
-      subject: "Aircraft Design Project [AAE 4045]",
-      date: "06-Dec-2024",
-      questionPaper: "QP_4045.pdf",
-      answerKeys: "Key_4045.pdf",
-      view: "View",
-      marks: "30.00 / 50.00",
-    },
-    {
-      sn: "03",
-      subject: "Flight Mechanics – II [AAE 4032]",
-      date: "10-Dec-2024",
-      questionPaper: "QP_4032.pdf",
-      answerKeys: "Key_4032.pdf",
-      view: "View",
-      marks: "42.50 / 50.00",
-    },
-  ]);
+  const [rows, setRows] = useState<MarkItem[]>([]);
 
   // 🔥 Fetch API on mount
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await getStudentExamEvents("34186", "332");
+        const res = await getStudentExamEvents( "332");
         console.log("event result---->", res)
         if (res?.statusCode === 200 && Array.isArray(res?.data)) {
           const formatted = res.data.map((item: any, index: number) => ({
             sn: (index + 1).toString().padStart(2, "0"),
-            subject: item.exam_event_name,
-            date: item.exam_event_date || "",
-            questionPaper: item.question_paper || "",
-            answerKeys: item.answer_key || "",
-            view: "View",
-            marks: item.marks || "-",
           }));
           if (formatted.length) {
             setRows(formatted);
