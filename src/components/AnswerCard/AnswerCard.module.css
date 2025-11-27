@@ -92,8 +92,28 @@
 }
 
 .answerBox {
+  width: calc(100vw - 15rem);
   padding: 18px 20px;
   border-top: 1px solid #ddd;
+  height: 300px;
+  overflow: auto;
+}
+
+.answerImage {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: contain;
+  border: 1px solid #e0e0e0;
+}
+
+.noAnswer {
+  padding: 16px;
+  background: #f8f8f8;
+  border-radius: 8px;
+  text-align: center;
+  color: #666;
+  font-weight: 500;
 }
 
 .answerText {

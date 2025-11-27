@@ -85,7 +85,7 @@ const Marklist = () => {
                     onClick={() => navigate("/answer-page")}
                   >
                     <ArticleIcon sx={{ fontSize: "14px" }} />
-                    {item.view}
+                    {item.view} View
                   </div>
                 </td>
 

@@ -18,7 +18,7 @@ const AnswerCard: React.FC<AnswerCardProps> = ({
     onReevaluationClick,
     onFeedbackClick
 }) => {
-
+    console.log("question==>", question)
     const getReevaluationStatus = (status: string) => {
         switch (status) {
             case "applied":
@@ -83,8 +83,6 @@ const AnswerCard: React.FC<AnswerCardProps> = ({
                         <span className={styles.scoreText}>Score : {question?.score}</span>
                     </div>
                 </div>
-
-
             </div>
 
             {/* Content */}
@@ -98,14 +96,22 @@ const AnswerCard: React.FC<AnswerCardProps> = ({
                     <LaunchIcon className={styles.launchIcon} />
                 </div>
 
-                <div className={styles.pageNumber}>Page : {question?.pageNumber}</div>
+                {/* <div className={styles.pageNumber}>Page : {question?.pageNumber}</div> */}
                 <div className={styles.answerBox}>
-                    <img
-                        src="https://via.placeholder.com/400x300?text=Sample+Image"
-                        alt="Sample Answer"
-                        className={styles.answerImage}
-                    />
+                    {Array.isArray(question?.answer) && question.answer.length > 0 ? (
+                        question.answer.map((item: any, idx: number) => (
+                            <img
+                                key={idx}
+                                src={item?.ans_page_img_url}
+                                alt={`Answer Page ${idx + 1}`}
+                                className={styles.answerImage}
+                            />
+                        ))
+                    ) : (
+                        <div className={styles.noAnswer}>No Answer Uploaded</div>
+                    )}
                 </div>
+
             </div>
 
         </div>

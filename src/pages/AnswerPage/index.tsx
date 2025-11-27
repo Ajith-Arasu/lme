@@ -77,7 +77,6 @@ const AnswerPage = () => {
             try {
                 const res = await getStudentExamAnswers("3166");
                 if (res?.statusCode === 200 && Array.isArray(res?.data)) {
-
                     const formatted = res.data.map((item: any, idx: number) => ({
                         questionNumber: idx + 1,
                         questionId: item.question_id,
@@ -90,6 +89,7 @@ const AnswerPage = () => {
                         remarks: item.remarks || "",
                         maxMarks: item.max_marks || null,
                         evaluatorName: item.evaluator_name || null,
+                        answer: item?.answers
                     }));
                     setQuestions(formatted);
                 }
@@ -116,9 +116,9 @@ const AnswerPage = () => {
                 />
             ))}
 
-            <div className={styles.submitButton}>
+            {questions.length ? <div className={styles.submitButton}>
                 <Button variant="contained" onClick={handleSubmit}>Submit</Button>
-            </div>
+            </div> : <div>No Data Found</div>}
 
             {/* Reevaluate Modal */}
             <ReevaluateModal
