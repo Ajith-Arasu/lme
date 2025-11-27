@@ -8,12 +8,14 @@ import styles from './AnswerPage.module.css';
 import { getStudentExamAnswers } from "../../API/services/events.service";
 import { useNavigationBlocker } from "../../hook/useBlocker";
 import { useNavigate } from "react-router-dom";
+import SubmitSuccessModal from "../../components/Modal/SubmitSuccessModal";
 
 const AnswerPage = () => {
 
     const [openReevaluateModal, setOpenReevaluateModal] = useState(false);
     const [openFeedbackModal, setOpenFeedbackModal] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [submitSuccessOpen, setSubmitSuccessOpen] = useState(false);
     const [openSnackBar, setOpenSnackBar] = useState(false);
 
     const [selectedQuestion, setSelectedQuestion] = useState<any>(null);
@@ -111,8 +113,12 @@ Pressure drop occurs in both nozzle and rotor`,
 
     //-----------------------------Submit Button--------------------------
     const handleSubmit = () => {
-        setIsSubmitted(true);   // Stop blocking navigation
-        navigate(-1);           // Go back to previous page
+        setSubmitSuccessOpen(true);
+    };
+
+    const handleSubmitSuccessClose = () => {
+        setIsSubmitted(true);
+        navigate(-1);
     };
 
     // 🔥 Fetch API on mount
@@ -177,6 +183,12 @@ Pressure drop occurs in both nozzle and rotor`,
                 onClose={handleCloseFeedback}
                 onSave={addFeedback}
                 questionDetail={selectedQuestion}
+            />
+
+            {/* Submitted Modal */}
+            <SubmitSuccessModal
+                open={submitSuccessOpen}
+                onClose={handleSubmitSuccessClose}
             />
 
             {/* Snackbar */}
