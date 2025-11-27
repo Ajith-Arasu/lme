@@ -47,12 +47,12 @@ export const getStudentExamEvents = async (
 
 /**
  * ------------------------------------------------------
- * 3. GET STUDENT EXAMS
+ * 3. GET STUDENT EXAMS ANSWERS
  * ------------------------------------------------------
  * Endpoint:
  * /api/student/exams?student_id=34178&exam_id=3166
  */
-export const getStudentExams = async (
+export const getStudentExamAnswers = async (
   student_id: string,
   exam_id: string,
   count?: number | string,

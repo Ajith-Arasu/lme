@@ -1,21 +1,26 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import StudentDetailCard from "../../components/StudentDetailCard";
 import styles from "./Marklist.module.css";
 import ArticleIcon from '@mui/icons-material/Article';
+import { getStudentExamEvents } from "../../API/services/events.service";
 
 interface MarkItem {
   sn: string;
-  subject: string;
-  date: string;
-  questionPaper: string;
-  answerKeys: string;
-  view: string;
-  marks: string;
+  subject?: string;
+  date?: string;
+  questionPaper?: string;
+  answerKeys?: string;
+  view?: string;
+  marks?: string;
+  shedule?: string;
+  link?: string;
 }
 
 const Marklist = () => {
   const navigate = useNavigate();
-  const rows: MarkItem[] = [
+
+  const [rows, setRows] = useState<MarkItem[]>([
     {
       sn: "01",
       subject: "Advanced Propulsion System [AAE 4043]",
@@ -43,116 +48,35 @@ const Marklist = () => {
       view: "View",
       marks: "42.50 / 50.00",
     },
-    {
-      sn: "04",
-      subject: "Aerospace Structures [AAE 4021]",
-      date: "12-Dec-2024",
-      questionPaper: "QP_4021.pdf",
-      answerKeys: "Key_4021.pdf",
-      view: "View",
-      marks: "46.00 / 50.00",
-    },
-    {
-      sn: "05",
-      subject: "Gas Dynamics [AAE 4012]",
-      date: "14-Dec-2024",
-      questionPaper: "QP_4012.pdf",
-      answerKeys: "Key_4012.pdf",
-      view: "View",
-      marks: "38.50 / 50.00",
-    },
-    {
-      sn: "06",
-      subject: "Aircraft Performance [AAE 4035]",
-      date: "15-Dec-2024",
-      questionPaper: "QP_4035.pdf",
-      answerKeys: "Key_4035.pdf",
-      view: "View",
-      marks: "44.00 / 50.00",
-    },
-    {
-      sn: "07",
-      subject: "Avionics Systems [AAE 4051]",
-      date: "16-Dec-2024",
-      questionPaper: "QP_4051.pdf",
-      answerKeys: "Key_4051.pdf",
-      view: "View",
-      marks: "41.00 / 50.00",
-    },
-    {
-      sn: "08",
-      subject: "Rocket Propulsion [AAE 4048]",
-      date: "17-Dec-2024",
-      questionPaper: "QP_4048.pdf",
-      answerKeys: "Key_4048.pdf",
-      view: "View",
-      marks: "39.50 / 50.00",
-    },
-    {
-      sn: "09",
-      subject: "Aircraft Stability & Control [AAE 4029]",
-      date: "18-Dec-2024",
-      questionPaper: "QP_4029.pdf",
-      answerKeys: "Key_4029.pdf",
-      view: "View",
-      marks: "47.00 / 50.00",
-    },
-    {
-      sn: "10",
-      subject: "Computational Fluid Dynamics [AAE 4060]",
-      date: "19-Dec-2024",
-      questionPaper: "QP_4060.pdf",
-      answerKeys: "Key_4060.pdf",
-      view: "View",
-      marks: "36.00 / 50.00",
-    },
-    {
-      sn: "11",
-      subject: "Aerodynamics – II [AAE 4025]",
-      date: "20-Dec-2024",
-      questionPaper: "QP_4025.pdf",
-      answerKeys: "Key_4025.pdf",
-      view: "View",
-      marks: "43.50 / 50.00",
-    },
-    {
-      sn: "12",
-      subject: "Aircraft Systems Engineering [AAE 4053]",
-      date: "21-Dec-2024",
-      questionPaper: "QP_4053.pdf",
-      answerKeys: "Key_4053.pdf",
-      view: "View",
-      marks: "40.00 / 50.00",
-    },
-    {
-      sn: "13",
-      subject: "Vibration & Aeroelasticity [AAE 4038]",
-      date: "22-Dec-2024",
-      questionPaper: "QP_4038.pdf",
-      answerKeys: "Key_4038.pdf",
-      view: "View",
-      marks: "37.50 / 50.00",
-    },
-    {
-      sn: "14",
-      subject: "Space Flight Dynamics [AAE 4065]",
-      date: "23-Dec-2024",
-      questionPaper: "QP_4065.pdf",
-      answerKeys: "Key_4065.pdf",
-      view: "View",
-      marks: "45.00 / 50.00",
-    },
-    {
-      sn: "15",
-      subject: "Aircraft Materials & Manufacturing [AAE 4015]",
-      date: "24-Dec-2024",
-      questionPaper: "QP_4015.pdf",
-      answerKeys: "Key_4015.pdf",
-      view: "View",
-      marks: "34.00 / 50.00",
-    },
-  ];
+  ]);
 
+  // 🔥 Fetch API on mount
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const res = await getStudentExamEvents("34186", "332");
+        console.log("event result---->", res)
+        if (res?.statusCode === 200 && Array.isArray(res?.data)) {
+          const formatted = res.data.map((item: any, index: number) => ({
+            sn: (index + 1).toString().padStart(2, "0"),
+            subject: item.exam_event_name,
+            date: item.exam_event_date || "",
+            questionPaper: item.question_paper || "",
+            answerKeys: item.answer_key || "",
+            view: "View",
+            marks: item.marks || "-",
+          }));
+          if (formatted.length) {
+            setRows(formatted);
+          }
+        }
+      } catch (error) {
+        console.error("Failed to load exam events:", error);
+      }
+    };
+
+    fetchEvents();
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -185,7 +109,17 @@ const Marklist = () => {
                 <td>{item.date}</td>
                 <td>{item.questionPaper}</td>
                 <td>{item.answerKeys}</td>
-                <td><div className={styles.tableSheetView} onClick={() => { navigate("/answer-page") }}><ArticleIcon sx={{ fontSize: "14px" }} />{item.view}</div></td>
+
+                <td>
+                  <div
+                    className={styles.tableSheetView}
+                    onClick={() => navigate("/answer-page")}
+                  >
+                    <ArticleIcon sx={{ fontSize: "14px" }} />
+                    {item.view}
+                  </div>
+                </td>
+
                 <td>{item.marks}</td>
               </tr>
             ))}
@@ -193,7 +127,7 @@ const Marklist = () => {
         </table>
       </div>
 
-    </div >
+    </div>
   );
 };
 

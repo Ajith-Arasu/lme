@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AnswerCard from "../../components/AnswerCard";
 import ReevaluateModal from "../../components/ReevaluateModal";
 import { Button, Snackbar } from "@mui/material";
 import FeedbackModal from "../../components/FeedbackModal";
 import ExamDetailCard from "../../components/ExamDetailCard";
-import styles from './AnswerPage.module.css'
+import styles from './AnswerPage.module.css';
+import { getStudentExamAnswers } from "../../API/services/events.service";
+
 const AnswerPage = () => {
     const [openReevaluateModal, setOpenReevaluateModal] = useState(false);
     const [openFeedbackModal, setOpenFeedbackModal] = useState(false);
@@ -12,7 +14,8 @@ const AnswerPage = () => {
 
     const [selectedQuestion, setSelectedQuestion] = useState<any>(null);
 
-    const dummyQuestions = [
+    // ✔ Must be a state (not const array)
+    const [questions, setQuestions] = useState<any[]>([
         {
             questionNumber: 1,
             score: "3.50 / 5.00",
@@ -29,7 +32,7 @@ They cannot operate in the absence of an atmosphere.`,
             pageNumber: 1,
             answer: `Turboprop
 Propeller is driven by turbine
-• Smaller mass flow rate
+Smaller mass flow rate
 
 Fan is driven by turbine
 Larger mass flow rate`,
@@ -41,12 +44,12 @@ Larger mass flow rate`,
             questionTitle: "Differentiate between Ramjet and Scramjet engines",
             pageNumber: 2,
             answer: `Ramjet
-• Combustion occurs at subsonic speeds
-• Effective up to Mach 3-6
+Combustion at subsonic speeds
+Effective up to Mach 3-6
 
 Scramjet
-• Combustion occurs at supersonic speeds
-• Effective at hypersonic speeds (Mach 6+)`,
+Combustion at supersonic speeds
+Effective above Mach 6`,
             status: "rejected"
         },
         {
@@ -55,15 +58,15 @@ Scramjet
             questionTitle: "Explain the difference between Impulse and Reaction turbines",
             pageNumber: 3,
             answer: `Impulse Turbine
-• Pressure drop occurs only in the nozzle
-• Kinetic energy changes across the rotor
+Pressure drop occurs only in nozzle
+Kinetic energy changes across rotor
 
 Reaction Turbine
-• Pressure drop occurs in both nozzle and rotor
-• Uses both impulse and reaction forces`,
+Pressure drop occurs in both nozzle and rotor`,
             status: "approved"
         }
-    ];
+    ]);
+
 
     // ---------------------- Reevaluation ----------------------
     const handleOpenReevaluate = (question: any) => {
@@ -99,11 +102,43 @@ Reaction Turbine
         setTimeout(() => setOpenSnackBar(false), 2000);
     };
 
+
+    // 🔥 Fetch API on mount
+    useEffect(() => {
+        const fetchAnswers = async () => {
+            try {
+                const res = await getStudentExamAnswers("34178", "3166");
+                console.log("Answer result ==>", res)
+                if (res?.statusCode === 200 && Array.isArray(res?.data)) {
+
+                    // Convert API response into your component format
+                    const formatted = res.data.map((item: any, idx: number) => ({
+                        questionNumber: idx + 1,
+                        score: item.score || "-",
+                        questionTitle: item.question_title || "Untitled",
+                        pageNumber: item.page_number || 1,
+                        answer: item.answer_text || "",
+                        status: item.status || "",
+                    }));
+                    if (formatted.length) {
+                        setQuestions(formatted);
+                    }
+
+                }
+            } catch (error) {
+                console.error("Failed to load exam answers:", error);
+            }
+        };
+
+        fetchAnswers();
+    }, []);
+
+
     return (
         <div>
             <ExamDetailCard />
 
-            {dummyQuestions.map((item, index) => (
+            {questions.map((item, index) => (
                 <AnswerCard
                     key={index}
                     question={item}
@@ -111,9 +146,11 @@ Reaction Turbine
                     onFeedbackClick={() => handleOpenFeedback(item)}
                 />
             ))}
+
             <div className={styles.submitButton}>
-                <Button variant="contained" >Submit</Button>
+                <Button variant="contained">Submit</Button>
             </div>
+
             {/* Reevaluate Modal */}
             <ReevaluateModal
                 open={openReevaluateModal}
@@ -122,7 +159,7 @@ Reaction Turbine
                 questionDetail={selectedQuestion}
             />
 
-            {/* Feedback Modal (Now works like reevaluate) */}
+            {/* Feedback Modal */}
             <FeedbackModal
                 open={openFeedbackModal}
                 onClose={handleCloseFeedback}
@@ -130,6 +167,7 @@ Reaction Turbine
                 questionDetail={selectedQuestion}
             />
 
+            {/* Snackbar */}
             <Snackbar
                 anchorOrigin={{ vertical: "top", horizontal: "center" }}
                 open={openSnackBar}

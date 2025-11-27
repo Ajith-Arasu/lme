@@ -50,12 +50,14 @@ const StudentDashboard = () => {
     }, []);
 
     const handleLinkClick = (item: MarkItem) => {
-        if (item.shedule.toLowerCase().includes("score")) {
-            setPendingLink(item.link);
+         setPendingLink(item.link);
             setIsDialogOpen(true);
-        } else {
-            navigate(item.link);
-        }
+        // if (item.shedule.toLowerCase().includes("score")) {
+        //     setPendingLink(item.link);
+        //     setIsDialogOpen(true);
+        // } else {
+        //     navigate(item.link);
+        // }
     };
 
     const handleAcceptAndContinue = () => {
