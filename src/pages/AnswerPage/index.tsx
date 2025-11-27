@@ -6,15 +6,18 @@ import FeedbackModal from "../../components/FeedbackModal";
 import ExamDetailCard from "../../components/ExamDetailCard";
 import styles from './AnswerPage.module.css';
 import { getStudentExamAnswers } from "../../API/services/events.service";
+import { useNavigationBlocker } from "../../hook/useBlocker";
+import { useNavigate } from "react-router-dom";
 
 const AnswerPage = () => {
+
     const [openReevaluateModal, setOpenReevaluateModal] = useState(false);
     const [openFeedbackModal, setOpenFeedbackModal] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false);
     const [openSnackBar, setOpenSnackBar] = useState(false);
 
     const [selectedQuestion, setSelectedQuestion] = useState<any>(null);
 
-    // ✔ Must be a state (not const array)
     const [questions, setQuestions] = useState<any[]>([
         {
             questionNumber: 1,
@@ -67,6 +70,9 @@ Pressure drop occurs in both nozzle and rotor`,
         }
     ]);
 
+    useNavigationBlocker(!isSubmitted);
+    const navigate = useNavigate();
+
 
     // ---------------------- Reevaluation ----------------------
     const handleOpenReevaluate = (question: any) => {
@@ -102,6 +108,12 @@ Pressure drop occurs in both nozzle and rotor`,
         setTimeout(() => setOpenSnackBar(false), 2000);
     };
 
+
+    //-----------------------------Submit Button--------------------------
+    const handleSubmit = () => {
+        setIsSubmitted(true);   // Stop blocking navigation
+        navigate(-1);           // Go back to previous page
+    };
 
     // 🔥 Fetch API on mount
     useEffect(() => {
@@ -148,7 +160,7 @@ Pressure drop occurs in both nozzle and rotor`,
             ))}
 
             <div className={styles.submitButton}>
-                <Button variant="contained">Submit</Button>
+                <Button variant="contained" onClick={handleSubmit}>Submit</Button>
             </div>
 
             {/* Reevaluate Modal */}
