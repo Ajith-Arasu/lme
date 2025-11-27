@@ -4,6 +4,8 @@ import axios from "axios";
 // Load Environment Variables
 // -----------------------------
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const VITE_ENV = import.meta.env.VITE_ENV;
+console.log("VITE_ENV==>", VITE_ENV)
 const TIMEOUT = Number(import.meta.env.VITE_API_TIMEOUT ?? 20000);
 
 // -----------------------------
