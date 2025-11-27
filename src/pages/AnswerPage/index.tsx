@@ -76,8 +76,6 @@ const AnswerPage = () => {
         const fetchAnswers = async () => {
             try {
                 const res = await getStudentExamAnswers("3166");
-                console.log("Answer result ==>", res);
-
                 if (res?.statusCode === 200 && Array.isArray(res?.data)) {
 
                     const formatted = res.data.map((item: any, idx: number) => ({
@@ -93,7 +91,6 @@ const AnswerPage = () => {
                         maxMarks: item.max_marks || null,
                         evaluatorName: item.evaluator_name || null,
                     }));
-                    console.log("formatted==>", formatted)
                     setQuestions(formatted);
                 }
             } catch (error) {

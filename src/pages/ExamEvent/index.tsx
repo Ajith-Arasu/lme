@@ -7,7 +7,7 @@ import { getStudentExamEvents } from "../../API/services/events.service";
 
 interface MarkItem {
   sn: string;
-  subject?: string;
+  subjectCode?: string;
   date?: string;
   questionPaper?: string;
   answerKeys?: string;
@@ -26,11 +26,14 @@ const Marklist = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await getStudentExamEvents( "332");
-        console.log("event result---->", res)
+        const res = await getStudentExamEvents("332");
         if (res?.statusCode === 200 && Array.isArray(res?.data)) {
           const formatted = res.data.map((item: any, index: number) => ({
             sn: (index + 1).toString().padStart(2, "0"),
+            subjectCode: item?.subject_code,
+            date:"-",
+            questionPaper:"-",
+            answerKeys:"-"
           }));
           if (formatted.length) {
             setRows(formatted);
@@ -71,7 +74,7 @@ const Marklist = () => {
             {rows.map((item) => (
               <tr key={item.sn}>
                 <td>{item.sn}</td>
-                <td>{item.subject}</td>
+                <td>{item.subjectCode}</td>
                 <td>{item.date}</td>
                 <td>{item.questionPaper}</td>
                 <td>{item.answerKeys}</td>

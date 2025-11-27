@@ -31,7 +31,6 @@ const Login = () => {
         student_login_id: data.username,
         student_password: data.password,
       });
-      console.log("res===>",res)
       if (res?.statusCode === 200) {
         // Redirect to page
         navigate("/exam-events");

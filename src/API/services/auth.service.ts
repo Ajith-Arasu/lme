@@ -33,7 +33,6 @@ export const loginService = async (
   payload: LoginRequest
 ): Promise<LoginResponse> => {
   const response = await api.post<LoginResponse>(LOGIN_URL, payload);
-  console.log("response==>", response)
   // Save tokens
   if (response?.data?.data?.access_token) {
     localStorage.setItem("access_token", response?.data?.data?.access_token);
