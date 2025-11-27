@@ -48,8 +48,7 @@ const ReevaluateModal: React.FC<ReevaluateModalProps> = ({
                     Question Number : {questionDetail?.questionNumber}
                 </div>
 
-                <div className={styles.questionText}>
-                    {questionDetail?.questionTitle || ""}
+                <div className={styles.questionText} dangerouslySetInnerHTML={{ __html: questionDetail?.questionTitle || "" }}>
                 </div>
 
 
